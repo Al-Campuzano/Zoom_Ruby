@@ -21,3 +21,5 @@ end
 
 # use the .max method for arrays to easily return the max of the two values
 puts "Max: #{[first_num, second_num].max}"
+
+#the end 
