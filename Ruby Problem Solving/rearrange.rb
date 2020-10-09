@@ -8,8 +8,10 @@ input = nil
 loop do
   print "Enter a number: "
   input = gets.chomp
-  # puts num
-  # puts num.to_i
+  if input.eql?("-0") || input.eql?("0")
+    puts input
+    return
+  end
   # this is how we check that the string entered is an actual integer
   # by converting the string to an int and then back to a string  
   # then checking that it has the same value as the original input
@@ -17,35 +19,30 @@ loop do
 end
 
 # crappy way, does not work if input is -105
-if num.to_i >= 0
-  puts num.split("").sort.join("").reverse
-else
-  puts "-#{num.split("").drop(1).sort.join("")}"  
-end
+# if num.to_i >= 0
+#   puts num.split("").sort.join("").reverse
+# else
+#   puts "-#{num.split("").drop(1).sort.join("")}"  
+# end
 
 # new idea
 
-# num = input.to_i
-# multiplier = num / num.abs
-# num_arr = input.split("")
-# possible = []
+num = input.to_i
+multiplier = num / num.abs
+num_arr = input.split("")
 
-# if multiplier == -1
-#   num_arr = num_arr.drop(1)
-# end
+if multiplier == -1
+  num_arr = num_arr.drop(1)
+end
 
-# num_arr.each_index do |a|
-#   num_arr.each_index do |b|
-#     next if a == b || num_arr[a].eql?("0")
-#     possible.append()
-#   end
-# end
+perms = num_arr.permutation.to_a
+options = []
 
+for n in perms do
+  unless n[0].eql?("0")
+    options.append(n.join("").to_i * multiplier)
+  end
+end
 
-# puts input
-# puts num
-# puts multiplier
-# puts num_arr
-# puts num_arr[0].class
-# puts result.join("").to_i * multiplier
+puts options.max
 
