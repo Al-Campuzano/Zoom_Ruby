@@ -45,4 +45,3 @@ end
 
 # output the largest number in the options array
 puts possible_options.max
-

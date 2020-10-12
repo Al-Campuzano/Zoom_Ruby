@@ -1,3 +1,6 @@
+# write a Ruby program to find the maximum of two numbers. If something other than a number is entered, 
+# it should prompt the person again for the number until a number is entered.
+
 # instantiate first and second number variables
 
 first_num = nil
@@ -21,5 +24,3 @@ end
 
 # use the .max method for arrays to easily return the max of the two values
 puts "Max: #{[first_num, second_num].max}"
-
-#the end 

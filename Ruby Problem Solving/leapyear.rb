@@ -21,6 +21,7 @@ end
 
 year_num = input.to_i
 
+# a leap year is one that is divisible by 4, but not divisible by 100, unless it is divisible by 400
 if ((year_num % 4 == 0 && !(year_num % 100 == 0)) || year_num % 400 == 0)
   puts "#{input} is a leap year"
 else
