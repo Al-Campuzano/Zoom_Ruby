@@ -7,4 +7,3 @@ height = gets.chomp.to_i
 for num in 1..height 
   puts (" " * (height - num)) + ("*" * num)
 end
-
