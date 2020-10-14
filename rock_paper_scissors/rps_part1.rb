@@ -8,6 +8,9 @@ invalid_msg = "No cheaters! Only Rock, Paper or Scissors are allowed."
 
 puts "Rock Paper Scissors" # game title
 
+p1_points = 0
+p2_points = 0
+
 loop do
   repeat = false
   print "\nPlayer 1 - Enter your selection: "
@@ -33,12 +36,18 @@ loop do
       # if player two's choice is in the winning message of player one's choice then player one wins, else player two wins
     elsif outcome_hash[player_one].include?(player_two)
       puts outcome_hash[player_one]
-      puts "Player 1 wins"
+      p1_points += 1
     else
       puts outcome_hash[player_two]
-      puts "Player 2 wins"
+      p2_points += 1
     end
   end
 
-  break unless repeat
+  break if (p1_points == 2 || p2_points == 2) && !repeat
+end
+
+if p1_points == 2
+  puts "Player 1 wins."
+else
+  puts "Player 2 wins."
 end
