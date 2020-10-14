@@ -20,11 +20,13 @@ else
   puts invalid_msg  
 end
 
-puts "Tie!" if player_one == player_two
-
-# if player two's choice is in the winning message of player one's choice then player one wins, else player two wins
-if outcome_hash[player_one].include?(player_two)
+if player_one == player_two
+  puts "Tie!" 
+  # if player two's choice is in the winning message of player one's choice then player one wins, else player two wins
+elsif outcome_hash[player_one].include?(player_two)
   puts outcome_hash[player_one]
+  puts "Player 1 wins"
 else
   puts outcome_hash[player_two]
+  puts "Player 2 wins"
 end
