@@ -14,10 +14,9 @@ puts format("%.2f", total(prices))
 
 
 def refund(prices)
-  amount, index = 0, 0
-  while index < prices.length
-    amount -= prices[index]
-    index += 1
+  amount = 0
+  prices.each do |price|
+    amount -= price
   end
   amount
 end
