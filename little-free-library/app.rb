@@ -40,15 +40,11 @@ class Book
   end
 end
 
-class User
+class User > Library
   def initialize
     @books = []
   end
   
-  def take book_to_remove
-    @books.delete_at(@books.index(book_to_remove))
-  end
-
   def place
     if book_to_add.class == Book
       @books.push(book_to_add)
@@ -59,10 +55,12 @@ class User
 end
 
 lib = Library.new
+user = User.new
 b1 = Book.new("A Study in Scarlet", 200)
 lib.place(b1)
 b2 = Book.new("The Black Rainbow", 400)
-lib.place(b2)
+user.place(b2)
 #puts lib.take(b2)
 #lib.place("Illiad")
 lib.look
+user.look
