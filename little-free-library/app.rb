@@ -12,8 +12,8 @@ class Library
     @books = []
   end
 
-  def look (type = "Library")
-    puts "#{type} list of books:"
+  def look 
+    puts "#{self.class} list of books:"
     @books.each { |book| book.print_book }
   end
 
@@ -21,7 +21,7 @@ class Library
     if (book_to_add.class == Book && @books.length <= 18)
       @books.push(book_to_add)
     else
-      puts "Error - Was not able to add the book. Check that it is a Book object and there are less than 18 books in the Library"
+      puts "Library error - Was not able to add the book. Check that it is a Book object and there are less than 18 books in the Library"
     end
   end
 
@@ -29,7 +29,7 @@ class Library
     if @books.index(book_to_remove)
       @books.delete_at(@books.index(book_to_remove))
     else
-      puts "Could not take the book - The book was not found"
+      puts "#{self.class} Error! Could not take the book - The book was not found"
     end
   end
 end
@@ -49,21 +49,17 @@ class User < Library
   def initialize
     @books = []
   end
-
-  def look
-    super("User")
-  end
   
   def place book_to_add
     if book_to_add.class == Book
       @books.push(book_to_add)
     else
-      puts "Error - Was not able to add the book. Check that it is a Book object"
+      puts "User error - Was not able to add the book. Check that it is a Book object"
     end
   end
 end
 
-##### UI #####
+##### Testing #####
 lib = Library.new
 user = User.new
 
@@ -73,21 +69,23 @@ lib.place(b1)
 b2 = Book.new("The Black Rainbow", 400)
 user.place(b2)
 
+puts "\n---- Starting state ----"
 lib.look
 user.look
-puts ""
 
+puts "\n---- User takes a book from Library ----"
 user.place(lib.take(b1))
 lib.look
 user.look
-puts ""
 
+puts "\n---- User places a different book into Library ----"
 lib.place(user.take(b2))
 lib.look
 user.look
-puts ""
 
+puts "\n---- User tries to place a book into Library that they don't currently have ----"
 lib.place(user.take(b2))
 lib.look
 user.look
-puts ""
+
+puts "\n---- The end. ----"
