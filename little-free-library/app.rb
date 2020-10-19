@@ -19,6 +19,8 @@ class Library
   def place book_to_add
     if (book_to_add.class == Book && @books.length <= 18)
       @books.push(book_to_add)
+    else
+      puts "Error - Was not able to add the book. Check that it is a Book object and there are less than 18 books in the Library"
     end
   end
 
@@ -38,11 +40,29 @@ class Book
   end
 end
 
+class User
+  def initialize
+    @books = []
+  end
+  
+  def take book_to_remove
+    @books.delete_at(@books.index(book_to_remove))
+  end
+
+  def place
+    if book_to_add.class == Book
+      @books.push(book_to_add)
+    else
+      puts "Error - Was not able to add the book. Check that it is a Book object"
+    end
+  end
+end
+
 lib = Library.new
 b1 = Book.new("A Study in Scarlet", 200)
 lib.place(b1)
 b2 = Book.new("The Black Rainbow", 400)
 lib.place(b2)
-puts lib.take(b2)
-
+#puts lib.take(b2)
+#lib.place("Illiad")
 lib.look
