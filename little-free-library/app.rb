@@ -16,8 +16,14 @@ class Library
     @books.each { |book| book.print_book }
   end
 
-  def place new_book
-    @books.push(new_book)
+  def place book_to_add
+    if (book_to_add.class == Book && @books.length <= 18)
+      @books.push(book_to_add)
+    end
+  end
+
+  def take book_to_remove
+    @books.delete_at(@books.index(book_to_remove))
   end
 end
 
@@ -35,6 +41,8 @@ end
 lib = Library.new
 b1 = Book.new("A Study in Scarlet", 200)
 lib.place(b1)
-puts b1.class
+b2 = Book.new("The Black Rainbow", 400)
+lib.place(b2)
+puts lib.take(b2)
 
 lib.look
