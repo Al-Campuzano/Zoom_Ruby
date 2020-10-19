@@ -12,7 +12,8 @@ class Library
     @books = []
   end
 
-  def look
+  def look (type = "Library")
+    puts "#{type} list of books:"
     @books.each { |book| book.print_book }
   end
 
@@ -25,7 +26,11 @@ class Library
   end
 
   def take book_to_remove
-    @books.delete_at(@books.index(book_to_remove))
+    if @books.index(book_to_remove)
+      @books.delete_at(@books.index(book_to_remove))
+    else
+      puts "Could not take the book - The book was not found"
+    end
   end
 end
 
@@ -40,12 +45,16 @@ class Book
   end
 end
 
-class User > Library
+class User < Library
   def initialize
     @books = []
   end
+
+  def look
+    super("User")
+  end
   
-  def place
+  def place book_to_add
     if book_to_add.class == Book
       @books.push(book_to_add)
     else
@@ -54,13 +63,31 @@ class User > Library
   end
 end
 
+##### UI #####
 lib = Library.new
 user = User.new
+
 b1 = Book.new("A Study in Scarlet", 200)
 lib.place(b1)
+
 b2 = Book.new("The Black Rainbow", 400)
 user.place(b2)
-#puts lib.take(b2)
-#lib.place("Illiad")
+
 lib.look
 user.look
+puts ""
+
+user.place(lib.take(b1))
+lib.look
+user.look
+puts ""
+
+lib.place(user.take(b2))
+lib.look
+user.look
+puts ""
+
+lib.place(user.take(b2))
+lib.look
+user.look
+puts ""
