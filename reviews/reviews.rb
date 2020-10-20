@@ -21,3 +21,19 @@ reviews = relevant_lines.reject { |line| line.include?("--") }
 
 puts reviews
 puts reviews.length
+
+# Find an adjective within each review
+
+def find_adjective(string)
+  words = string.split(" ")
+  index = words.find_index("is")
+  words[index + 1]
+end
+
+adjectives = []
+
+reviews.each do |review|
+  adjectives << find_adjective(review)
+end
+
+puts adjectives
