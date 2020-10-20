@@ -1,12 +1,14 @@
 coins = {"toonie" => 200, "loonie" => 100, "quarter" => 25, "dime" => 10, "nickel" => 05}
-test_value = 410
+test_value = 343
 coins_back = {}
 total_coins = 0
 
 coins.each do |name, value|
   coins_to_add = test_value/value
-  total_coins += coins_to_add
-  coins_back[name] = coins_to_add
+  unless coins_to_add == 0
+    total_coins += coins_to_add
+    coins_back[name] = coins_to_add
+  end
   test_value = test_value % value
 end
 
@@ -21,15 +23,13 @@ end
 
 respond_string = ""
 
-coins_back.each do |name, value|
-  if value > 0
-    respond_string += "#{value} #{name}#{value > 1 ? "s" : ""}, "
+coins_back.each_with_index do |(name, value), index|
+  if index == coins_back.length - 1 
+    respond_string += "and "
   end
+  respond_string += "#{value} #{name}#{value > 1 ? "s" : ""}, "
 end
 
-respond_string = respond_string.split(",")
-respond_string[-2] = " and#{respond_string[-2]}"
-respond_string = respond_string.join(",")
 
 puts "You need to dispense #{respond_string[0..-3]}."
 puts "Total coins: #{total_coins}"
