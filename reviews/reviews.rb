@@ -14,3 +14,10 @@ relevant_lines = lines.find_all { |line| line.include?("Truncated") }
 
 puts relevant_lines
 puts relevant_lines.length
+
+# Discard reviewer bylines
+
+reviews = relevant_lines.reject { |line| line.include?("--") }
+
+puts reviews
+puts reviews.length
