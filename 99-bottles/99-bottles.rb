@@ -15,5 +15,8 @@ def verse(number=0)
   puts "No more bottles of beer on the wall, \nno more bottles of beer. \nGo to the store and buy some more, \n99 bottles of beer on the wall."
 end
 
-verse(0)
+print "How many bottles are on the wall? "
+input = gets.to_i
+
+verse(input)
 
