@@ -30,19 +30,22 @@ loop do
     else # the guess was incorrect
       counter += 1 # increase the number of guesses by one
       output = "" # used to build the string with hints
-      code_copy = r_code.clone # clone the random code so we can remove characters that have been matched
+      # clone the random code and user's guest so we can remove characters that have been matched
+      code_copy = r_code.clone 
+      guess_copy = u_guess.clone
       # loop through the guess string's characters and check if any of the guessed characters are in the exact position as in the random code
       u_guess.each_char.with_index { |c,i|
         if r_code[i].eql?(u_guess[i])
-          # remove the character from the copy of the code so it can't be matched again later
+          # remove the character from the copies of the code so it can't be matched again later
           code_copy[code_copy.index(c)] = ""
+          guess_copy[guess_copy.index(c)] = ""
           # add the correct hint character to the output string
           output += "X"
         end
       }
 
-      # loop through guess string's chars to see if any of them are in any part of the remaining cloned code, if so then remove that char from the cloned code and add the correct hint char to the output string
-      u_guess.each_char { |c|
+      # loop through guess copy string's chars to see if any of them are in any part of the remaining cloned code, if so then remove that char from the cloned code and add the correct hint char to the output string
+      guess_copy.each_char { |c|
         if code_copy.include?(c)
           code_copy[code_copy.index(c)] = ""
           output += "x"
