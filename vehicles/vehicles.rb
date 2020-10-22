@@ -33,9 +33,23 @@ class Truck < Vehicle
 end
 
 class Motorcycle < Vehicle
-  
+  def steer
+    puts "Turn front wheel."
+  end
+end
+
+class DragRacer < Car
+  def accelerate
+    puts "Inject nitrous!"
+  end
 end
 
 truck = Truck.new
 truck.load_bed("259 bouncy balls")
 puts "The truck is carrying #{truck.cargo}."
+
+motorcycle = Motorcycle.new
+motorcycle.steer
+
+drag = DragRacer.new
+drag.accelerate
