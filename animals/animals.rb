@@ -35,14 +35,18 @@ class Dog < Animal
 end
 
 class Bird < Animal
-  
+  def talk
+    puts "#{name} says Chirp! Chirp!"
+  end
 end
 
 class Cat < Animal
-  
+  def talk
+    puts "#{name} says Meow!"
+  end
 end
 
-dog = Dog.new
+dog = Cat.new
 dog.name = "Rusty"
 dog.age = 3
 dog.talk
