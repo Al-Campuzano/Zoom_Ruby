@@ -1,7 +1,4 @@
 class Organism
-  # attr_accessor :habitat
-  # attr_accessor :diet
-  # attr_accessor :type
 
   def initialize
     @habitats = ["land", "water", "air"]
@@ -104,29 +101,61 @@ class Spaceship
   end
 
   def manifest
-    puts "\nThe following #{@organisms_onboard.length} organisms are on the ship: "
-    @organisms_onboard.each do |x|
-      print x.info
+    if @organisms_onboard.length == 0
+      puts "The ship is empty."
+    else
+      puts "\nThe following #{@organisms_onboard.length} organisms are on the ship: "
+      @organisms_onboard.each do |x|
+        print x.info
+      end
     end
   end
 
   def blast_off
     puts "Commencing countdown:"
-    (10).downto(1) do |i|
+    (5).downto(1) do |i|
       puts i
       sleep 1
     end
     puts "BLAST OFF"
 
-    5.times do
+    3.times do
       puts "Fuel left: #{@fuel.round(2)}"
-      @fuel *= 0.85
+      @fuel *= 0.75
       sleep 1
     end
     puts "We're there!"
+  end
+
+  def transfer_to_planet(planet)
+    puts "Transferring organisms to planet."
+    planet.transfer_from_ship(@organisms_onboard)
+    @organisms_onboard = []
+  end
+end
+
+# Design a Class for the planet Kepler-1649c
+# Use Instance Variables to define information about the planet (Number of moons, distance from it's sun, whats in the atmosphere etc...)
+# Have the Organisms transfer from the Spaceship to Kepler-1649c upon landing the Spaceship
+# Create an Instance Method that simulates time jumping one million years in the future. 
+# How many of each Organism do we have now? Did any of them survive? Add some randomness here so we can run this multiple times with different results.
+
+class Kepler
+  def initialize
+    @num_moons = 4
+    @au = 1.25
+    @atmosphere = ["nitrogen", "oxygen", "methane"]
+  end
+
+  def transfer_from_ship(organisms)
+    @organisms_onplanet = organisms
+    puts "Organisms are now on the planet."
   end
 end
 
 ship = Spaceship.new
 ship.manifest
 ship.blast_off
+planet = Kepler.new
+ship.transfer_to_planet(planet)
+ship.manifest
