@@ -12,31 +12,51 @@ class Organism
   attr_accessor :type
 
   def initialize
-    @habitat = "land"
-    @diet = "carnivore"
-    @type = "mammal"
+    @habitats = ["land", "water", "air"]
+    @diets = ["carnivore", "herbivore", "omnivore", "photosynthesis"]
+    @types = ["mammal", "reptile", "fish", "insect", "plant"]
+
+    @habitat = @habitats.sample
+    @diet = @diets.sample
+    @type = @types.sample
     @alive = true
   end
 
   def eat
-    puts @alive ? "The organism is eating." : "He's dead, Jim."
+    puts @alive ? "The organism is eating." : "This organism is not alive."
   end
 
-  def reproduce
-    puts "The organism has reproduced."
-    offspring = self.class.new
+  def reproduce(parent_class=Organism)
+    if @alive
+      puts "The organism has reproduced."
+      parent_class.new
+    else
+      puts "This organism is not alive."
+    end
   end
 
   def perish
-    puts "The organism has died."
+    puts "It's dead, Jim."
     @alive = false
+  end
+
+  def info
+    puts "This #{self.class} is a #{@diet} #{@type}, and it lives in the #{@habitat}."
   end
 end
 
-org = Organism.new
+class SeaCreature < Organism
+  def initialize
+    super
+    @habitat = "water"  
+  end
+end
 
-org.eat
-org2 = org.reproduce
-org2.eat
-org.perish
-org.eat
+sea_creature = SeaCreature.new
+
+sea_creature.eat
+sea2 = sea_creature.reproduce(SeaCreature)
+sea_creature.info
+sea2.info
+sea2.perish
+sea2.reproduce
