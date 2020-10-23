@@ -46,7 +46,14 @@ class Cat < Animal
   end
 end
 
-dog = Cat.new
+class Armadillo < Animal
+  def move(destination)
+    puts "#{name} unrolls!"
+    puts "#{name} runs to the #{destination}."
+  end
+end
+
+dog = Armadillo.new
 dog.name = "Rusty"
 dog.age = 3
 dog.talk
