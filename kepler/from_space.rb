@@ -110,6 +110,13 @@ class Spaceship
       @organisms_onboard.each do |x|
         print x.info
       end
+      org_hash = {SeaCreature => 0, FlyingThing => 0, SuperMammal => 0, GentleBeast => 0, AlienPlant => 0, Mutant => 0}  
+      @organisms_onboard.each do |org|
+        org_hash[org.class] += 1
+      end
+      org_hash.each do |name, count|
+        puts "#{name}: #{count}"
+      end
     end
   end
 
@@ -150,7 +157,7 @@ class Kepler
 
   def time_machine
     puts "One million years into the future..."
-    100.times do
+    1000.times do
       random_org = @organisms_onplanet.sample
       if rand(3) == 1
         @organisms_onplanet.delete(random_org) if random_org.perish 
@@ -158,10 +165,14 @@ class Kepler
         @organisms_onplanet.push(*random_org.reproduce)
       end
     end
+    self.manifest
+  end
+
+  def manifest
     puts "\nThe following #{@organisms_onplanet.length} organisms are on the planet: "
-    org_hash = {}  
+    org_hash = {SeaCreature => 0, FlyingThing => 0, SuperMammal => 0, GentleBeast => 0, AlienPlant => 0, Mutant => 0}  
     @organisms_onplanet.each do |org|
-       org_hash[org.class] ? org_hash[org.class] += 1 : org_hash[org.class] = 1
+       org_hash[org.class] += 1
     end
     org_hash.each do |name, count|
       puts "#{name}: #{count}"
