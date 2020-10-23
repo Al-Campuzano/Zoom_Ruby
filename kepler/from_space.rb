@@ -109,7 +109,24 @@ class Spaceship
       print x.info
     end
   end
+
+  def blast_off
+    puts "Commencing countdown:"
+    (10).downto(1) do |i|
+      puts i
+      sleep 1
+    end
+    puts "BLAST OFF"
+
+    5.times do
+      puts "Fuel left: #{@fuel.round(2)}"
+      @fuel *= 0.85
+      sleep 1
+    end
+    puts "We're there!"
+  end
 end
 
 ship = Spaceship.new
 ship.manifest
+ship.blast_off
