@@ -31,7 +31,9 @@ class Animal
 end
 
 class Dog < Animal
-  
+  def to_s
+    "#{name} the dog, age #{age}."
+  end
 end
 
 class Bird < Animal
@@ -53,9 +55,10 @@ class Armadillo < Animal
   end
 end
 
-dog = Armadillo.new
+dog = Dog.new
 dog.name = "Rusty"
 dog.age = 3
 dog.talk
 dog.move("Couch")
 dog.report_age
+puts dog
