@@ -26,10 +26,10 @@ class Organism
     puts @alive ? "The organism is eating." : "This organism is not alive."
   end
 
-  def reproduce(parent_class=Organism)
+  def reproduce
     if @alive
       puts "The organism has reproduced."
-      parent_class.new
+      self.class.new
     else
       puts "This organism is not alive."
     end
@@ -50,12 +50,13 @@ class SeaCreature < Organism
     super
     @habitat = "water"  
   end
+
 end
 
 sea_creature = SeaCreature.new
 
 sea_creature.eat
-sea2 = sea_creature.reproduce(SeaCreature)
+sea2 = sea_creature.reproduce
 sea_creature.info
 sea2.info
 sea2.perish
