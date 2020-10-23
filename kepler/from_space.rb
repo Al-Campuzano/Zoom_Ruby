@@ -23,15 +23,15 @@ class Organism
   end
 
   def eat
-    puts @alive ? "The organism is eating." : "This organism is not alive."
+    puts @alive ? "The #{self.class} is eating." : "This #{self.class} is not alive."
   end
 
   def reproduce
     if @alive
-      puts "The organism has reproduced."
+      puts "The #{self.class} has reproduced."
       self.class.new
     else
-      puts "This organism is not alive."
+      puts "This #{self.class} is not alive."
     end
   end
 
@@ -50,14 +50,41 @@ class SeaCreature < Organism
     super
     @habitat = "water"  
   end
-
 end
 
-sea_creature = SeaCreature.new
+class FlyingThing < Organism
+  def initialize
+    super
+    @habitat = "air"
+  end
+end
 
-sea_creature.eat
-sea2 = sea_creature.reproduce
-sea_creature.info
-sea2.info
-sea2.perish
-sea2.reproduce
+class SuperMammal < Organism
+  def initialize
+    super
+    @type = "mammal"
+  end
+end
+
+class GentleBeast < Organism
+  def initialize
+    super
+    @diet = "herbivore"
+  end
+end
+
+class Mutant < Organism
+  def reproduce
+    puts "Uh oh. The MUTANT has reproduced!!"
+    [Mutant.new, Mutant.new]
+  end
+
+  def perish
+    puts "OH NO! You can't kill the MUTANT!!"
+  end
+end
+
+mutant = Mutant.new
+mutant.eat
+mutant.perish
+mutant.reproduce
