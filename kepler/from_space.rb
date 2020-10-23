@@ -1,15 +1,7 @@
-# Organisms
-# At least 5 distinct Organisms written as ruby Classes
-# Each Organism must contain Instance Variables and Instance Methods that represent all the organism needs to know and do in order to survive
-# At least 1 method should print out information about the creature
-
 class Organism
-  # need to know: habitat(land, water, air), diet(carnivore, herbivore, omnivore, photosynthesis), type(mammal, reptile, fish, insect, plant)
-  # needs to do: hunt, flee, reproduce, eat, perish
-  # print info
-  attr_accessor :habitat
-  attr_accessor :diet
-  attr_accessor :type
+  # attr_accessor :habitat
+  # attr_accessor :diet
+  # attr_accessor :type
 
   def initialize
     @habitats = ["land", "water", "air"]
@@ -73,6 +65,14 @@ class GentleBeast < Organism
   end
 end
 
+class AlienPlant < Organism
+  def initialize
+    super
+    @type = "plant"
+    @diet = "photosynthesis"
+  end
+end
+
 class Mutant < Organism
   def reproduce
     puts "Uh oh. The MUTANT has reproduced!!"
@@ -84,7 +84,32 @@ class Mutant < Organism
   end
 end
 
-mutant = Mutant.new
-mutant.eat
-mutant.perish
-mutant.reproduce
+class Spaceship
+  attr_accessor :organisms_onboard
+  def initialize
+    @organism_types = [Mutant, SeaCreature, FlyingThing, SuperMammal, GentleBeast, AlienPlant, Mutant]
+    @organisms_onboard = []
+    @fuel = 100
+    self.load_organisms
+  end
+
+  def load_organisms
+    10.times do
+      to_add = @organism_types.sample.new
+      @organisms_onboard.push(to_add)
+      if rand(2) == 1
+        @organisms_onboard.push(*to_add.reproduce)
+      end
+    end
+  end
+
+  def manifest
+    puts "\nThe following #{@organisms_onboard.length} organisms are on the ship: "
+    @organisms_onboard.each do |x|
+      print x.info
+    end
+  end
+end
+
+ship = Spaceship.new
+ship.manifest
