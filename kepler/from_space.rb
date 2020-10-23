@@ -17,16 +17,17 @@ class Organism
 
   def reproduce
     if @alive
-      puts "The #{self.class} has reproduced."
+      #puts "The #{self.class} has reproduced."
       self.class.new
     else
-      puts "This #{self.class} is not alive."
+      #puts "This #{self.class} is not alive."
     end
   end
 
   def perish
-    puts "It's dead, Jim."
+    #puts "It's dead, Jim."
     @alive = false
+    true
   end
 
   def info
@@ -72,12 +73,13 @@ end
 
 class Mutant < Organism
   def reproduce
-    puts "Uh oh. The MUTANT has reproduced!!"
+    # puts "Uh oh. The MUTANT has reproduced!!"
     [Mutant.new, Mutant.new]
   end
 
   def perish
-    puts "OH NO! You can't kill the MUTANT!!"
+    # puts "OH NO! You can't kill the MUTANT!!"
+    false
   end
 end
 
@@ -134,12 +136,6 @@ class Spaceship
   end
 end
 
-# Design a Class for the planet Kepler-1649c
-# Use Instance Variables to define information about the planet (Number of moons, distance from it's sun, whats in the atmosphere etc...)
-# Have the Organisms transfer from the Spaceship to Kepler-1649c upon landing the Spaceship
-# Create an Instance Method that simulates time jumping one million years in the future. 
-# How many of each Organism do we have now? Did any of them survive? Add some randomness here so we can run this multiple times with different results.
-
 class Kepler
   def initialize
     @num_moons = 4
@@ -151,6 +147,26 @@ class Kepler
     @organisms_onplanet = organisms
     puts "Organisms are now on the planet."
   end
+
+  def time_machine
+    puts "One million years into the future..."
+    100.times do
+      random_org = @organisms_onplanet.sample
+      if rand(3) == 1
+        @organisms_onplanet.delete(random_org) if random_org.perish 
+      else
+        @organisms_onplanet.push(*random_org.reproduce)
+      end
+    end
+    puts "\nThe following #{@organisms_onplanet.length} organisms are on the planet: "
+    org_hash = {}  
+    @organisms_onplanet.each do |org|
+       org_hash[org.class] ? org_hash[org.class] += 1 : org_hash[org.class] = 1
+    end
+    org_hash.each do |name, count|
+      puts "#{name}: #{count}"
+    end
+  end
 end
 
 ship = Spaceship.new
@@ -159,3 +175,4 @@ ship.blast_off
 planet = Kepler.new
 ship.transfer_to_planet(planet)
 ship.manifest
+planet.time_machine
