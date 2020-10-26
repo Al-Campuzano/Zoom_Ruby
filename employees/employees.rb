@@ -51,9 +51,16 @@ class HourlyEmployee < Employee
     self.hours_per_week = hours_per_week
   end
 
-  def turn_into_cashier
-    self.hourly_wage = 12.75 
-    self.hours_per_week = 25
+  def self.security_guard(name)
+    HourlyEmployee.new(name, 19.25, 30)
+  end
+
+  def self.cashier(name)
+    self.new(name, 12.75, 25)
+  end
+
+  def self.janitor(name)
+    HourlyEmployee.new(name, 10.50, 20)
   end
 
   def hourly_wage=(hourly_wage)
@@ -74,12 +81,10 @@ class HourlyEmployee < Employee
   end
 end
 
-salaried_employee = SalariedEmployee.new("Jane Doe", 50000)
-salaried_employee.print_pay_stub
+angela = HourlyEmployee.security_guard("Angela Matthews")
+edwin = HourlyEmployee.janitor("Edwin Burgess")
+ivan = HourlyEmployee.cashier("Ivan Stokes")
 
-hourly_employee = HourlyEmployee.new("John Smith", 14.97, 30)
-hourly_employee.print_pay_stub
-
-ivan = HourlyEmployee.new("Ivan Stokes")
-ivan.turn_into_cashier
+angela.print_pay_stub
+edwin.print_pay_stub
 ivan.print_pay_stub
