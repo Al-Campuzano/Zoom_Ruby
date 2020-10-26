@@ -11,8 +11,6 @@ module AcceptsComments
 end
 
 class Clip
-  attr_reader :comments
-
   def play
     puts "Playing #{object_id}..."
   end
@@ -30,6 +28,11 @@ end
 
 class Photo
   include AcceptsComments
+
+  def initialize
+    @format = "JPEG"
+  end
+  
   def show
     puts "Displaying #{object_id}..."
   end
