@@ -51,6 +51,11 @@ class HourlyEmployee < Employee
     self.hours_per_week = hours_per_week
   end
 
+  def turn_into_cashier
+    self.hourly_wage = 12.75 
+    self.hours_per_week = 25
+  end
+
   def hourly_wage=(hourly_wage)
     raise "A wage of #{hourly_wage} isn't valid" if hourly_wage < 0
     @hourly_wage = hourly_wage
@@ -74,3 +79,7 @@ salaried_employee.print_pay_stub
 
 hourly_employee = HourlyEmployee.new("John Smith", 14.97, 30)
 hourly_employee.print_pay_stub
+
+ivan = HourlyEmployee.new("Ivan Stokes")
+ivan.turn_into_cashier
+ivan.print_pay_stub
