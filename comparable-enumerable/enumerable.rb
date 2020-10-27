@@ -1,6 +1,8 @@
 # Code along pages 311-332 in Head First Ruby
 
 class WordSplitter
+  include Enumerable
+
   attr_accessor :string
 
   def each
@@ -11,8 +13,12 @@ class WordSplitter
 end
 
 splitter = WordSplitter.new
-splitter.string = "one two three four"
+splitter.string = "how do you do?"
 
-splitter.each do |word|
-  puts word
-end
+p splitter.find_all { |x| x.include?("d") }
+p splitter.reject { |x| x.include?("d") }
+p splitter.map { |x| x.reverse }
+p splitter.any? { |x| x.include?("e") }
+p splitter.count
+p splitter.first
+p splitter.sort
