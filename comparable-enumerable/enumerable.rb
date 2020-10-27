@@ -22,3 +22,9 @@ p splitter.any? { |x| x.include?("e") }
 p splitter.count
 p splitter.first
 p splitter.sort
+
+p splitter.map { |x| x.capitalize }
+p splitter.find { |x| x.include?("do") }
+p splitter.group_by { |x| x.include?("do") }
+p splitter.max_by { |x| x.length }
+p splitter.to_a
