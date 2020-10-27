@@ -1,9 +1,9 @@
 # Create a base class with the following specifications:
 #
 # Must have 3 attributes ✓
-# Uses proper Encapsulation
+# Uses proper Encapsulation ✓
 # Uses data validation for setting attributes ✓
-# Contains an array
+# Contains an array ✓
 # Has an initialization method ✓
 # Contains 3 other methods
 # Uses at least 1 block
@@ -33,5 +33,28 @@ class Musician
 
   def to_s
     "I'm a #{self.class}, my name is #{@name}. I have #{@years_experience} years of experience, and I am #{@active ? "" : "in"}active."
+  end
+
+  def perform
+    @active = true
+    if block_given?
+      yield
+    else
+      puts "#{@name} is performing"
+    end
+  end
+
+  def add_instrument(instrument)
+    raise "That instrument is invalid" unless instrument.is_a? String
+    @instruments << instrument
+    puts "#{instrument} has been added."
+  end
+
+  def instruments
+    if @instruments.length > 0
+      puts @instruments
+    else
+      puts "There are no instruments listed."
+    end
   end
 end
