@@ -12,6 +12,17 @@ class Guitarist < Musician
     puts "I'm a guitarist"
   end
 
-  # fave string method
-  # override perform, maybe to_s
+  def fave_strings(strings)
+    raise "Those strings are not valid" unless strings.is_a? String
+    @fave_strings = strings
+  end
+
+  def perform
+    @active = true
+    puts "#{@name} is playing a crazy solo!"
+  end
+
+  def to_s
+    return super + " My favorite strings are #{@fave_strings}."
+  end
 end
