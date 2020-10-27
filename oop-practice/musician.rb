@@ -35,12 +35,19 @@ class Musician
     @instruments << instrument
     puts "#{instrument} has been added."
   end
+  
+  def remove_instrument(instrument)
+    raise "That instrument is invalid" unless instrument.is_a? String
+    @instruments.delete(instrument)
+    puts "#{instrument} has been removed."
+  end
 
   def instruments
     if @instruments.length > 0
       if block_given?
         yield @instruments
       else
+        puts "#{@name} plays: "
         puts @instruments
       end
     else

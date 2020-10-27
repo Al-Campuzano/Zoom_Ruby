@@ -1,3 +1,9 @@
+# Write a program that:
+# Creates new objects
+# Demonstrates their functionality
+# Calls super()
+# Adds and removes values to an array
+
 require_relative 'guitarist'
 require_relative 'bassist'
 require_relative 'drummer'
@@ -5,8 +11,13 @@ require_relative 'drummer'
 alex = Guitarist.new("Alex", 40, true)
 alex.name("Alex Lifeson")
 alex.add_instrument("Guitar")
+alex.add_instrument("Mandolin")
+alex.add_instrument("Harp")
 alex.fave_strings("D'addario")
 alex.perform
+alex.instruments
+alex.remove_instrument("Mandolin")
+alex.instruments
 puts alex
 
 
