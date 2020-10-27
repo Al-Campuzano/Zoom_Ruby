@@ -19,7 +19,6 @@ class Musician
 
   def active(value)
     @active = value ? true : false
-    puts @active
   end
 
   def to_s

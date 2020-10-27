@@ -10,13 +10,12 @@ alex.perform
 puts alex
 
 
-al = Musician.new("Al Campuzano", 19)
-# al.name("")
+al = Musician.new("Al Campuzano", 18)
 al.active(1)
 al.active(0)
 al.active(false)
-al.add_experience
 puts al
+al.add_experience
 al.perform
 puts al
 
@@ -25,9 +24,9 @@ al.instruments
 al.instruments { |y| puts y.include?("Guitar") }
 
 
-geddy = Bassist.new
+geddy = Bassist.new("Geddy Lee", 42, true)
 puts geddy
 
-neil = Drummer.new
-puts "Neil: #{neil.object_id}"
-puts alex
+neil = Drummer.new("Neil Peart", 35)
+neil.traditional_grip(nil)
+puts neil
