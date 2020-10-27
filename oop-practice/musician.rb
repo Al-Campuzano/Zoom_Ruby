@@ -1,10 +1,11 @@
 class Musician
-  def initialize(name = "Anonymous", years_experience = 0, active = true)
+  include Enumerable
+
+  def initialize(name = "Anonymous", years_experience = 0, active = false)
     @name = name
     @instruments = []
     @years_experience = years_experience
     @active = active
-    puts "I'm a musician"
   end
 
   def name(name)
@@ -27,11 +28,7 @@ class Musician
 
   def perform
     @active = true
-    if block_given?
-      yield
-    else
-      puts "#{@name} is performing"
-    end
+    puts "#{@name} is performing"
   end
 
   def add_instrument(instrument)
@@ -42,7 +39,11 @@ class Musician
 
   def instruments
     if @instruments.length > 0
-      puts @instruments
+      if block_given?
+        yield @instruments
+      else
+        puts @instruments
+      end
     else
       puts "There are no instruments listed."
     end

@@ -14,11 +14,11 @@ al.active(false)
 al.add_experience
 puts al
 al.perform
-al.perform { puts "I'm playing a concert" }
 puts al
 
 al.add_instrument("Guitar")
 al.instruments
+al.instruments { |y| puts y.include?("Guitar") }
 
 
 geddy = Bassist.new
@@ -26,4 +26,8 @@ puts "Geddy: #{geddy.object_id}"
 
 neil = Drummer.new
 puts "Neil: #{neil.object_id}"
-puts neil
+puts alex
+alex.name("Alex Lifeson")
+alex.add_instrument("Guitar")
+
+puts alex
