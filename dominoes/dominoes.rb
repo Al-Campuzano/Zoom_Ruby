@@ -1,6 +1,10 @@
-# In a class method, create and return an array containing a double-six set of dominoes (Links to an external site.). The dominoes can be in any order. In code at the bottom of the file, use each to display the entire set to check that your code works.
+#Under the class definition, write a method called swap_tops_and_bottoms, which will take in a list of dominoes and use the map method to return  new list ofa dominoes in the same order as the old one, but where the top and bottom values have been swapped. For example, if the first domino in the list is a 4-3, the first domino in the new list will be 3-4. In code at the bottom of the file, use each to display the modified set after the original set (but make sure it’s clear which is which in the printout). Make a commit.
+
+
 
 class Domino
+  attr_accessor :side_a, :side_b
+
   @@TILES_HASH = {
     0 => "|   |\n|   |\n|   |\n",
     1 => "|   |\n| * |\n|   |\n",
@@ -36,6 +40,12 @@ class Domino
   end
 end
 
+def swap_tops_and_bottoms(old_set)
+  old_set.map do |tile|
+    Domino.new(tile.side_b, tile.side_a)
+  end
+end
+
 test_tile = Domino.new(6,4)
 
 puts test_tile
@@ -45,3 +55,9 @@ puts "=== TESTING SET ==="
 test_set = Domino.build_set
 
 test_set.each { |tile| puts tile }
+
+puts "=== AFTER SWAP ==="
+
+swapped = swap_tops_and_bottoms(test_set)
+
+swapped.each { |tile| puts tile }
