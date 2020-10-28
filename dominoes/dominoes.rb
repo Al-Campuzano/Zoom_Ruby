@@ -1,7 +1,7 @@
-# Define a class that represents information about a single domino (Links to an external site.), including a to_s method to display the domino using asterisks (*) and any other characters needed, displaying them similar to how real dominoes would be laid out.
+# In a class method, create and return an array containing a double-six set of dominoes (Links to an external site.). The dominoes can be in any order. In code at the bottom of the file, use each to display the entire set to check that your code works.
 
 class Domino
-  @@tiles_hash = {
+  @@TILES_HASH = {
     0 => "|   |\n|   |\n|   |\n",
     1 => "|   |\n| * |\n|   |\n",
     2 => "|*  |\n|   |\n|  *|\n",
@@ -11,7 +11,7 @@ class Domino
     6 => "|* *|\n|* *|\n|* *|\n"  
   }
 
-  @@horizontal_line = " ---\n"
+  @@HORIZONTAL_LINE = " ---\n"
 
   def initialize(side_a, side_b)
     @side_a = side_a
@@ -19,11 +19,11 @@ class Domino
   end
 
   def to_s
-    return @@horizontal_line + @@tiles_hash[@side_a] + 
-      @@horizontal_line + @@tiles_hash[@side_b] + @@horizontal_line
+    return @@HORIZONTAL_LINE + @@TILES_HASH[@side_a] + 
+      @@HORIZONTAL_LINE + @@TILES_HASH[@side_b] + @@HORIZONTAL_LINE + "\n"
   end
 end
 
-test_tile = Domino.new(1,4)
+test_tile = Domino.new(6,4)
 
 puts test_tile
