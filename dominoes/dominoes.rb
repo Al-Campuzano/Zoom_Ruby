@@ -1,7 +1,3 @@
-#Under the class definition, write a method called swap_tops_and_bottoms, which will take in a list of dominoes and use the map method to return  new list ofa dominoes in the same order as the old one, but where the top and bottom values have been swapped. For example, if the first domino in the list is a 4-3, the first domino in the new list will be 3-4. In code at the bottom of the file, use each to display the modified set after the original set (but make sure it’s clear which is which in the printout). Make a commit.
-
-
-
 class Domino
   attr_accessor :side_a, :side_b
 
@@ -46,9 +42,13 @@ def swap_tops_and_bottoms(old_set)
   end
 end
 
-test_tile = Domino.new(6,4)
+def find_dominoes_with(set, num)
+set.find_all do |tile|
+    tile.side_a == num || tile.side_b == num
+  end
+end
 
-puts test_tile
+##### CODE FOR TESTING #####
 
 puts "=== TESTING SET ==="
 
@@ -61,3 +61,9 @@ puts "=== AFTER SWAP ==="
 swapped = swap_tops_and_bottoms(test_set)
 
 swapped.each { |tile| puts tile }
+
+puts "=== FINDING DOMINOES WITH 3 PIPS ==="
+
+with_three = find_dominoes_with(test_set, 3)
+
+with_three.each { |tile| puts tile }
