@@ -19,7 +19,8 @@ class Domino
   end
 
   def to_s
-    return @@horizontal_line + @@tiles_hash[@side_a] + @@horizontal_line + @@tiles_hash[@side_b] + @@horizontal_line
+    return @@horizontal_line + @@tiles_hash[@side_a] + 
+      @@horizontal_line + @@tiles_hash[@side_b] + @@horizontal_line
   end
 end
 
