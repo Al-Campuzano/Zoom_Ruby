@@ -12,6 +12,18 @@ class Domino
   }
 
   @@HORIZONTAL_LINE = " ---\n"
+  
+  def self.build_set
+    @max_pips = 6
+    set = []
+
+    (0..@max_pips).each do |a|
+      (a..@max_pips).each do |b|
+        set.push(Domino.new(a,b))
+      end
+    end
+    set
+  end
 
   def initialize(side_a, side_b)
     @side_a = side_a
@@ -27,3 +39,9 @@ end
 test_tile = Domino.new(6,4)
 
 puts test_tile
+
+puts "=== TESTING SET ==="
+
+test_set = Domino.build_set
+
+test_set.each { |tile| puts tile }
