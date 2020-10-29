@@ -20,6 +20,7 @@ In this workshop you'll continue writing unit tests in Ruby using MiniTest.
     - LegoMinifigure has three helper methods: hat_words, left_item_words, and right_item_words. They don't take any arguments, so they just return a built string that is used by `to_s` to build the string that describes the minifigure object. `wear_hat`, `place_in_left_hand`, and `place_in_right_hand` methods take one input each and adds that inputted element to the appropriate attribute of the object. `is_strong?` doesn't take any inputs, it just checks if either of the object's items in its hands is heavy by using the item's `is_heavy` method.
     * The limits of the cases of expected behaviour (i.e. how many arguments can the method take?) .
     * Any exceptional/error cases.
+    The `is_heavy` method assumes that we're passing in the correct type of input: a number. Otherwise it will be comparing the weight, which should be a number to something else, like a String and that would cause an error. There is an error in the LegoHat class where the initialize method assigns the value of `size_word` into @size, but `size_word` doesn't exist; and later it calls that same incorrect variable name in the `to_s` method, breaking it. The `is_stylish?` and `is_strong?` methods do not check that the minifigure actually has a hat or left or right items, so calling those methods in situations where those attributes are `nil` will generate an error and break the code.
 
 5. Create a new file called `lego_test.rb`.
 
