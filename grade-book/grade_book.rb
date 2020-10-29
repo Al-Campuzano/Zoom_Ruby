@@ -44,10 +44,11 @@ end
 
 # grade_book = GradeBook.new
 # grade_book.add_grade("christine", 77)
+# puts grade_book.letter_grade("christine")
 # puts "Grade Book:"
 # puts grade_book.grades
 # puts "Letter Grades:"
 # puts grade_book.letter_grades
 # puts "Grade Book:"
 # puts grade_book.grades
-# puts 78.5.to_grade
+ puts 78.5.to_grade

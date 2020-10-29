@@ -7,10 +7,10 @@
 # A test that uses refute_equal
 # A test that uses assert_includes
 # A test that uses assert_output
-# A test that uses refute_nil
+# A test that uses refute_nil ✓
 # A test that uses refute_empty ✓
 # A test that uses assert_kind_of ✓
-# A test that uses assert_raises
+# A test that uses assert_raises ✓
 # A test that uses assert_instance_of ✓
 # at least 6 total, one for each method
 
@@ -37,5 +37,21 @@ class GradeBookTest < Minitest::Test
     grade_book = GradeBook.new
     grade_book.add_grade("Student", 79)
     assert(grade_book.get_grade("Student") == 79)  
+  end
+
+  def test_letter_grades_returns_something
+    grade_book = GradeBook.new
+    grade_book.add_grade("Student", 79)
+    refute_nil(grade_book.letter_grades)  
+  end
+
+  def test_letter_grade_raises_error
+    grade_book = GradeBook.new
+    grade_book.add_grade("Student", 79)
+    assert_raises()  { grade_book.letter_grade }
+  end
+
+  def test_to_grade_79_returns_B
+    assert(79.0.to_grade == "B")
   end
 end
