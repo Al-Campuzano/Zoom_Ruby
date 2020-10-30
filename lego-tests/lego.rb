@@ -3,13 +3,13 @@ class LegoHat
   attr_accessor :size, :colour, :style
 
   def initialize(size, colour, style)
-    @size = size_word
+    @size = size
     @colour = colour
     @style = style
   end
 
   def to_s
-    "a #{size_word} #{colour} #{@style}"
+    "a #{size} #{colour} #{@style}"
   end
 end
 
@@ -112,6 +112,6 @@ end
 
 # hat = LegoHat.new(3, "blue", "big")
 # puts hat
-figure = LegoMinifigure.new("Bob")
-puts figure
-puts figure.is_strong?
+# figure = LegoMinifigure.new("Bob")
+# puts figure
+# puts figure.is_strong?
