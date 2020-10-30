@@ -109,9 +109,3 @@ class LegoMinifigure
     @left_item.is_heavy(10) || @right_item.is_heavy(10)
   end
 end
-
-# hat = LegoHat.new(3, "blue", "big")
-# puts hat
-# figure = LegoMinifigure.new("Bob")
-# puts figure
-# puts figure.is_strong?
