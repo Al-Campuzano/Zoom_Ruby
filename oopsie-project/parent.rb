@@ -46,9 +46,11 @@ class Creature
   def receive_item(item, number)
     if @items[item] 
       @items[item] += number
-      return "#{number} #{item} have been added."
+      puts "#{number} #{item} have been added."
+      return true
     else
-      return "#{item} does not exist, so it cannot be received."
+      puts "#{item} does not exist, so it cannot be received."
+      return false
     end
   end
 end

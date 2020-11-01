@@ -49,9 +49,7 @@ class CreatureTest < Minitest::Test
   end
 
   def test_receive_with_existing_item
-    actual = @@creature.receive_item("Hammers", 1)
-    expected = "1 Hammers have been added."
-    assert_equal(expected, actual)
+    assert(@@creature.receive_item("Hammers", 1))
     @@creature = Creature.new("Billy", 21, "Go ahead, make my day!")
   end
 
@@ -62,9 +60,7 @@ class CreatureTest < Minitest::Test
   end
   
   def test_receive_with_missing_item
-    actual = @@creature.receive_item("Screws", 29)
-    expected = "Screws does not exist, so it cannot be received."
-    assert_equal(expected, actual)
+    refute(@@creature.receive_item("Screws", 29))
     @@creature = Creature.new("Billy", 21, "Go ahead, make my day!")
   end
   
