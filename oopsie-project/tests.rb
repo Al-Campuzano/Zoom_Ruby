@@ -26,39 +26,73 @@ class CreatureTest < Minitest::Test
   def test_move_method
     expected = "Billy is on the move!"
     actual = @@creature.move 
-    assert(expected,actual)
+    assert_equal(expected,actual)
   end
 
   def test_speak_method
     expected = "Billy says: Go ahead, make my day!"
     actual = @@creature.speak
-    assert(expected, actual)
+    assert_equal(expected, actual)
   end
 
   def test_speak_with_block
     expected = "I'll be back!"
     actual = @@creature.speak { "I'll be back!"}
-    assert(expected, actual)
+    assert_equal(expected, actual)
   end
 
   def test_speak_with_no_catch_phrase
     unknown = Creature.new
     expected = "UNKNOWN says: I'm the best!"
     actual = unknown.speak
-    assert(expected, actual)
+    assert_equal(expected, actual)
   end
 
   def test_receive_with_existing_item
     actual = @@creature.receive_item("Hammers", 1)
     expected = "1 Hammers have been added."
-    assert(expected, actual)
+    assert_equal(expected, actual)
+    @@creature = Creature.new("Billy", 21, "Go ahead, make my day!")
+  end
+
+  def test_receive_adjusts_amounts
+    actual = @@creature.receive_item("Hammers", 1)
+    refute_equal(1, @@creature.items["Hammers"])
     @@creature = Creature.new("Billy", 21, "Go ahead, make my day!")
   end
   
   def test_receive_with_missing_item
     actual = @@creature.receive_item("Screws", 29)
     expected = "Screws does not exist, so it cannot be received."
-    assert(expected, actual)
+    assert_equal(expected, actual)
     @@creature = Creature.new("Billy", 21, "Go ahead, make my day!")
+  end
+  
+  def test_give_with_existing_item
+    actual = @@creature.give_item("Hammers", 1)
+    expected = "1 Hammers have been given."
+    assert_equal(expected, actual)
+    @@creature = Creature.new("Billy", 21, "Go ahead, make my day!")    
+  end
+
+  def test_give_adjusts_amounts
+    actual = @@creature.give_item("Hammers", 1)
+    refute_equal(1, @@creature.items["Hammers"])
+    @@creature = Creature.new("Billy", 21, "Go ahead, make my day!")    
+  end
+  
+  def test_give_with_missing_item
+    actual = @@creature.give_item("Drills", 3)
+    expected = "Drills does not exist, so it cannot be retrieved."
+    assert_equal(expected, actual)
+    @@creature = Creature.new("Billy", 21, "Go ahead, make my day!")    
+  end
+  
+  def test_give_with_not_enough_number
+    actual = @@creature.give_item("Hammers", 3)
+    expected = "There are not enough Hammers to be given."
+    assert_equal(expected, actual)
+    @@creature = Creature.new("Billy", 21, "Go ahead, make my day!")    
+    
   end
 end

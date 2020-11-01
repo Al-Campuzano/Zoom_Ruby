@@ -12,7 +12,7 @@
 # 3 attributes
 
 class Creature
-  attr_accessor :items
+  attr_reader :items
 
   def initialize(name="UNKNOWN", age=999, catch_phrase=nil)
     @name = name
@@ -34,15 +34,21 @@ class Creature
   end
 
   def give_item(item, number)
-    
+    return "#{item} does not exist, so it cannot be retrieved." unless @items[item]
+    if @items[item] >= number
+      @items[item] -= number
+      return "#{number} #{item} have been given."
+    else
+      return "There are not enough #{item} to be given."
+    end
   end
 
   def receive_item(item, number)
     if @items[item] 
       @items[item] += number
-      puts "#{number} #{item} have been added."
+      return "#{number} #{item} have been added."
     else
-      puts "#{item} does not exist, so it cannot be received"
+      return "#{item} does not exist, so it cannot be received."
     end
   end
 end
