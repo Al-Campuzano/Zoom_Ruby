@@ -5,3 +5,26 @@
 # Have at least one occurrence of code yielding to a block. ✓
 
 require_relative 'children'
+
+
+bob = Cartoon.new
+bob.name = "Sponge Bob"
+bob.age = 8
+bob.catch_phrase = "I live in a pineapple under the sea"
+bob.jump
+p bob.items
+puts bob
+bob.move
+
+clark = SuperHero.new
+clark.name = "Clark Kent"
+p clark.items
+clark.fly
+clark.super_power = "Invinsibility"
+clark.move
+
+bill = Jester.new
+bill.name = "Bill Burr"
+p bill.items
+bill.move
+bill.entertain
