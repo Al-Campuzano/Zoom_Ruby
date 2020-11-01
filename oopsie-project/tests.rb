@@ -23,12 +23,14 @@ class CreatureTest < Minitest::Test
     assert_instance_of(Creature, @@creature)  
   end
 
+  # move tests
   def test_move_method
     expected = "Billy is on the move!"
     actual = @@creature.move 
     assert_equal(expected,actual)
   end
 
+  # speak tests
   def test_speak_method
     expected = "Billy says: Go ahead, make my day!"
     actual = @@creature.speak
@@ -48,6 +50,7 @@ class CreatureTest < Minitest::Test
     assert_equal(expected, actual)
   end
 
+  # receive_item tests
   def test_receive_with_existing_item
     assert(@@creature.receive_item("Hammers", 1))
     @@creature = Creature.new("Billy", 21, "Go ahead, make my day!")
@@ -64,10 +67,9 @@ class CreatureTest < Minitest::Test
     @@creature = Creature.new("Billy", 21, "Go ahead, make my day!")
   end
   
+  ## give_item tests
   def test_give_with_existing_item
-    actual = @@creature.give_item("Hammers", 1)
-    expected = "1 Hammers have been given."
-    assert_equal(expected, actual)
+    assert(@@creature.give_item("Hammers", 1))
     @@creature = Creature.new("Billy", 21, "Go ahead, make my day!")    
   end
 
@@ -78,17 +80,12 @@ class CreatureTest < Minitest::Test
   end
   
   def test_give_with_missing_item
-    actual = @@creature.give_item("Drills", 3)
-    expected = "Drills does not exist, so it cannot be retrieved."
-    assert_equal(expected, actual)
+    refute(@@creature.give_item("Drills", 3))
     @@creature = Creature.new("Billy", 21, "Go ahead, make my day!")    
   end
   
   def test_give_with_not_enough_number
-    actual = @@creature.give_item("Hammers", 3)
-    expected = "There are not enough Hammers to be given."
-    assert_equal(expected, actual)
+    refute(@@creature.give_item("Hammers", 3))
     @@creature = Creature.new("Billy", 21, "Go ahead, make my day!")    
-    
   end
 end

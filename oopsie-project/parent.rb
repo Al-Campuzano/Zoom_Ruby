@@ -34,12 +34,17 @@ class Creature
   end
 
   def give_item(item, number)
-    return "#{item} does not exist, so it cannot be retrieved." unless @items[item]
+    unless @items[item]
+      puts "#{item} does not exist, so it cannot be retrieved." 
+      return false
+    end
     if @items[item] >= number
       @items[item] -= number
-      return "#{number} #{item} have been given."
+      puts "#{number} #{item} have been given."
+      return true
     else
-      return "There are not enough #{item} to be given."
+      puts "There are not enough #{item} to be given."
+      return false
     end
   end
 
