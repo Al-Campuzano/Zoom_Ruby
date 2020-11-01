@@ -10,3 +10,12 @@
 # Receives x number of an item from an object
 # Can only receive an item if it already exists in the hash
 # 3 attributes
+
+class Creature
+  def initialize
+    @name
+    @age
+    @catch_phrase
+    @items
+  end
+end
