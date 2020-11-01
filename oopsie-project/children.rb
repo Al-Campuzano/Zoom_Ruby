@@ -8,6 +8,8 @@
 require_relative 'parent'
 
 class Cartoon < Creature
+  attr_reader :animation_type
+  
   def initialize(name="UNKNOWN", age=999, catch_phrase="I'm animated!", animation_type="Claymation")
     super(name, age, catch_phrase)
     @items["Saws"] = 2
@@ -15,7 +17,15 @@ class Cartoon < Creature
   end
 
   def jump
-    "#{@name} jumped #{random(10)} feet high."
+    puts "#{@name} jumped #{rand(10)} feet high."
+  end
+
+  def animation_type=(animation_type)
+    if animation_type == ""
+      raise "A blank animation type is not allowed."
+    else
+      @animation_type = animation_type.to_s
+    end
   end
 
   def to_s
@@ -27,3 +37,10 @@ class Cartoon < Creature
   end
 end
 
+bob = Cartoon.new
+bob.name = "Sponge Bob"
+bob.age = 8
+bob.catch_phrase = "I live in a pineapple under the sea"
+bob.jump
+puts bob
+bob.move
