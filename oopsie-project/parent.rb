@@ -12,18 +12,37 @@
 # 3 attributes
 
 class Creature
+  attr_accessor :items
+
   def initialize(name="UNKNOWN", age=999, catch_phrase=nil)
     @name = name
     @age = age
     @catch_phrase = catch_phrase
-    @items = Hash.new(0)
+    @items = {"Hammers" => 1, "Nails" => 13, "Band-aids" => 4}
   end
 
   def move
-    puts "#{@name} is on the move!"
+    "#{@name} is on the move!"
   end
 
   def speak
-    puts "#{@name} says: #{@catch_phrase ? @catch_phrase : 'I\'m the best!'}"
+    if block_given?
+      yield
+    else
+      "#{@name} says: #{@catch_phrase ? @catch_phrase : 'I\'m the best!'}"
+    end
+  end
+
+  def give_item(item, number)
+    
+  end
+
+  def receive_item(item, number)
+    if @items[item] 
+      @items[item] += number
+      puts "#{number} #{item} have been added."
+    else
+      puts "#{item} does not exist, so it cannot be received"
+    end
   end
 end

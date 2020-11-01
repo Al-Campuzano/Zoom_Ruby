@@ -35,10 +35,30 @@ class CreatureTest < Minitest::Test
     assert(expected, actual)
   end
 
+  def test_speak_with_block
+    expected = "I'll be back!"
+    actual = @@creature.speak { "I'll be back!"}
+    assert(expected, actual)
+  end
+
   def test_speak_with_no_catch_phrase
     unknown = Creature.new
     expected = "UNKNOWN says: I'm the best!"
     actual = unknown.speak
     assert(expected, actual)
+  end
+
+  def test_receive_with_existing_item
+    actual = @@creature.receive_item("Hammers", 1)
+    expected = "1 Hammers have been added."
+    assert(expected, actual)
+    @@creature = Creature.new("Billy", 21, "Go ahead, make my day!")
+  end
+  
+  def test_receive_with_missing_item
+    actual = @@creature.receive_item("Screws", 29)
+    expected = "Screws does not exist, so it cannot be received."
+    assert(expected, actual)
+    @@creature = Creature.new("Billy", 21, "Go ahead, make my day!")
   end
 end
