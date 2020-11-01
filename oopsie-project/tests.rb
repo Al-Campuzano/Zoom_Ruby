@@ -11,3 +11,15 @@
 # A test that uses assert_output
 # A test that uses refute_nil
 # A test that uses assert_instance_of
+
+
+require 'minitest/autorun'
+require_relative 'parent'
+
+class CreatureTest < Minitest::Test
+  @@creature = Creature.new("Billy", 21, "Go ahead, make my day!")
+
+  def test_super_initialized_properly
+    assert_instance_of(Creature, @@creature)  
+  end
+end

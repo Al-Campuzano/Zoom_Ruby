@@ -12,10 +12,18 @@
 # 3 attributes
 
 class Creature
-  def initialize
-    @name
-    @age
-    @catch_phrase
-    @items
+  def initialize(name="UNKNOWN", age=999, catch_phrase=nil)
+    @name = name
+    @age = age
+    @catch_phrase = catch_phrase
+    @items = Hash.new(0)
+  end
+
+  def move
+    puts "#{@name} is on the move!"
+  end
+
+  def speak
+    puts "#{@name} says: #{@catch_phrase ? @catch_phrase : 'I\'m the best!'}"
   end
 end
