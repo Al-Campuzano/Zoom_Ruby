@@ -72,6 +72,38 @@ class SuperHero < Creature
   end
 end
 
+class Jester < Creature
+  attr_reader :joke
+
+  def initialize(name="UNKNOWN", age=999, catch_phrase="Velcro: what a rip-off!", joke="Orion's Belt is a big waist of space")
+    super(name, age, catch_phrase)
+    @items["Hats"] = 69
+    @joke = joke
+  end
+
+  def entertain
+    puts @catch_phrase
+    puts @joke
+    self.move { "My irrational fear of moving stairs seems to be getting worse. You might say it’s… escalating." }
+  end
+
+  def joke=(joke)
+    if joke == ""
+      raise "The jester MUST have a joke, it can't be blank."
+    else
+      @joke = joke.to_s
+    end
+  end
+
+  def move
+    if block_given?
+      puts yield
+    else
+      puts  "I'm moving to Greenwich in a couple months. Don't know what I'm going to do in the mean time..."
+    end
+  end
+end
+
 bob = Cartoon.new
 bob.name = "Sponge Bob"
 bob.age = 8
@@ -87,3 +119,9 @@ p clark.items
 clark.fly
 clark.super_power = "Invinsibility"
 clark.move
+
+bill = Jester.new
+bill.name = "Bill Burr"
+p bill.items
+bill.move
+bill.entertain
