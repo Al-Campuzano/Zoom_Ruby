@@ -6,10 +6,11 @@
 # 1 additional hash item
 
 require_relative 'parent'
+require_relative 'modules'
 
 class Cartoon < Creature
   attr_reader :animation_type
-  
+
   def initialize(name="UNKNOWN", age=999, catch_phrase="I'm animated!", animation_type="Claymation")
     super(name, age, catch_phrase)
     @items["Saws"] = 2
@@ -37,10 +38,52 @@ class Cartoon < Creature
   end
 end
 
+class SuperHero < Creature
+  attr_reader :super_power
+
+  def initialize(name="UNKNOWN", age=999, catch_phrase="HULK SMASH!", super_power="Flight")
+    super(name, age, catch_phrase)
+    @items["Capes"] = 257
+    @super_power = super_power
+  end
+
+  def fly
+    if @super_power == "Flight"
+      5.downto(1) do |i|
+        puts i
+        sleep 1
+      end
+      puts "It's not a bird, it's not a plane, it's #{@name}!"
+    else
+      puts "#{@name} can't fly :("
+    end
+  end
+
+  def super_power=(super_power)
+    if super_power == ""
+      @super_power = "NONE!"
+    else
+      @super_power = super_power.to_s
+    end
+  end
+
+  def move
+    self.fly
+  end
+end
+
 bob = Cartoon.new
 bob.name = "Sponge Bob"
 bob.age = 8
 bob.catch_phrase = "I live in a pineapple under the sea"
 bob.jump
+p bob.items
 puts bob
 bob.move
+
+clark = SuperHero.new
+clark.name = "Clark Kent"
+p clark.items
+clark.fly
+clark.super_power = "Invinsibility"
+clark.move
