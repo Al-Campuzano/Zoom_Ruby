@@ -23,6 +23,40 @@ class CreatureTest < Minitest::Test
     assert_instance_of(Creature, @@creature)  
   end
 
+  # setter tests
+  def test_name_setter_with_empty_string
+    assert_raises() { @@creature.name = "" }
+    @@creature = Creature.new("Billy", 21, "Go ahead, make my day!")
+  end
+
+  def test_name_setter_with_correct_string
+    @@creature.name = "Jimmy"
+    assert("Jimmy" == @@creature.name)
+    @@creature = Creature.new("Billy", 21, "Go ahead, make my day!")
+  end
+  
+  def test_catch_phrase_setter_with_empty_string
+    assert_raises() { @@creature.catch_phrase = "" }
+    @@creature = Creature.new("Billy", 21, "Go ahead, make my day!")
+  end
+
+  def test_catch_phrase_setter_with_correct_string
+    @@creature.catch_phrase = "Use the force!"
+    assert("Use the force!" == @@creature.catch_phrase)
+    @@creature = Creature.new("Billy", 21, "Go ahead, make my day!")
+  end
+  
+  def test_age_with_incorrect_input
+    assert_raises() { @@creature.age = "Bob" }
+    @@creature = Creature.new("Billy", 21, "Go ahead, make my day!")
+  end
+  
+  def test_age_with_correct_input
+    @@creature.age = 33
+    assert_equal(33, @@creature.age)
+    @@creature = Creature.new("Billy", 21, "Go ahead, make my day!")
+  end
+
   # move tests
   def test_move_method
     expected = "Billy is on the move!"
