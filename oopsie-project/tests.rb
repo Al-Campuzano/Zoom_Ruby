@@ -1,10 +1,10 @@
 # Nobody’s perfect - not even supreme beings. Write the following tests:
  
 
-# Superclass attribute is set correctly after initialization
-# receive() works as expected
-# give() works as expected
-# The output of speak()
+# Superclass attribute is set correctly after initialization ✓
+# receive() works as expected ✓
+# give() works as expected ✓
+# The output of speak() ✓
 # 2 subclass methods
 # 2 module methods
 # A test that uses refute_equal ✓
@@ -15,6 +15,7 @@
 
 require 'minitest/autorun'
 require_relative 'parent'
+require_relative 'children'
 
 class CreatureTest < Minitest::Test
   @@creature = Creature.new("Billy", 21, "Go ahead, make my day!")
