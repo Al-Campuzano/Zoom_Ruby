@@ -22,4 +22,23 @@ class CreatureTest < Minitest::Test
   def test_super_initialized_properly
     assert_instance_of(Creature, @@creature)  
   end
+
+  def test_move_method
+    expected = "Billy is on the move!"
+    actual = @@creature.move 
+    assert(expected,actual)
+  end
+
+  def test_speak_method
+    expected = "Billy says: Go ahead, make my day!"
+    actual = @@creature.speak
+    assert(expected, actual)
+  end
+
+  def test_speak_with_no_catch_phrase
+    unknown = Creature.new
+    expected = "UNKNOWN says: I'm the best!"
+    actual = unknown.speak
+    assert(expected, actual)
+  end
 end
