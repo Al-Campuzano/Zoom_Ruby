@@ -52,9 +52,9 @@ class Creature
 
   def speak
     if block_given?
-      yield
+      puts yield
     else
-      "#{@name} says: #{@catch_phrase ? @catch_phrase : 'I\'m the best!'}"
+      puts "#{@name} says: #{@catch_phrase ? @catch_phrase : 'I\'m the best!'}"
     end
   end
 

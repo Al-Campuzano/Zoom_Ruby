@@ -7,10 +7,10 @@
 # The output of speak()
 # 2 subclass methods
 # 2 module methods
-# A test that uses refute_equal
-# A test that uses assert_output
+# A test that uses refute_equal ✓
+# A test that uses assert_output ✓
 # A test that uses refute_nil
-# A test that uses assert_instance_of
+# A test that uses assert_instance_of ✓
 
 
 require 'minitest/autorun'
@@ -66,22 +66,20 @@ class CreatureTest < Minitest::Test
 
   # speak tests
   def test_speak_method
-    expected = "Billy says: Go ahead, make my day!"
+    expected = "Billy says: Go ahead, make my day!\n"
     actual = @@creature.speak
-    assert_equal(expected, actual)
+    assert_output(expected) { @@creature.speak }
   end
 
   def test_speak_with_block
-    expected = "I'll be back!"
-    actual = @@creature.speak { "I'll be back!"}
-    assert_equal(expected, actual)
+    expected = "I'll be back!\n"
+    assert_output(expected) { (@@creature.speak { "I'll be back!" }) }
   end
 
   def test_speak_with_no_catch_phrase
     unknown = Creature.new
-    expected = "UNKNOWN says: I'm the best!"
-    actual = unknown.speak
-    assert_equal(expected, actual)
+    expected = "UNKNOWN says: I'm the best!\n"
+    assert_output(expected) {unknown.speak}
   end
 
   # receive_item tests
