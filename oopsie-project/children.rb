@@ -48,7 +48,7 @@ class SuperHero < Creature
   end
 
   def fly
-    if @super_power == "Flight"
+    if ["flight", "flying", "fly"].include?(@super_power.downcase)
       5.downto(1) do |i|
         puts i
         sleep 1
