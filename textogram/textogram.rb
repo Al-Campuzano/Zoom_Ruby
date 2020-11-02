@@ -7,7 +7,7 @@ class Textogram
     @histogram = Hash.new(0)
   end
 
-  def make_histogram(case_sensitive=true, special_chars=true)
+  def make_letter_histogram(case_sensitive=true, special_chars=true)
     text_arr = @text.split.join("").split("")
     text_arr = text_arr.select { |c| c.downcase != c.upcase } unless special_chars
     text_arr = text_arr.map { |c| c.downcase } unless case_sensitive
@@ -30,44 +30,46 @@ end
 
 puts "\n=== HELLO, world! ==="
 text = Textogram.new("HELLO, world!")
-text.make_histogram(false,true)
+
+text.make_letter_histogram
+puts "case sensitive, with special characters"
 puts text
-text.make_histogram(true,false)
-puts ""
+text.make_letter_histogram(false,false)
+puts "case insensitive, no special characters"
 puts text
-text.make_histogram
-puts ""
+text.make_letter_histogram(true,false)
+puts "case sensitive, no special characters"
 puts text
-text.make_histogram(false,false)
-puts ""
+text.make_letter_histogram(false,true)
+puts "case insensitive, with special characters"
 puts text
 
 puts "\n=== (empty) ==="
 empty = Textogram.new("     ")
-empty.make_histogram
+empty.make_letter_histogram
+puts "case sensitive, with special characters"
 puts empty
-puts ""
-empty.make_histogram(false, false)
+empty.make_letter_histogram(false, false)
+puts "case insensitive, no special characters"
 puts empty
-puts ""
-empty.make_histogram(true, false)
+empty.make_letter_histogram(true, false)
+puts "case sensitive, no special characters"
 puts empty
-puts ""
-empty.make_histogram(false, true)
+empty.make_letter_histogram(false, true)
+puts "case insensitive, with special characters"
 puts empty
-puts ""
 
-puts "\n=== Was ist ein Prokoptôn ==="
-german = Textogram.new("    Was ist   ein Prokoptôn    ")
-german.make_histogram
+puts "\n=== Was ist ein Prokoptôn? ==="
+german = Textogram.new("    Was ist   ein Prokoptôn ?    ")
+german.make_letter_histogram
+puts "case sensitive, with special characters"
 puts german
-puts ""
-german.make_histogram(false, false)
+german.make_letter_histogram(false, false)
+puts "case insensitive, no special characters"
 puts german
-puts ""
-german.make_histogram(true, false)
+german.make_letter_histogram(true, false)
+puts "case sensitive, no special characters"
 puts german
-puts ""
-german.make_histogram(false, true)
+german.make_letter_histogram(false, true)
+puts "case insensitive, with special characters"
 puts german
-puts ""
