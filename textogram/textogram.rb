@@ -56,4 +56,18 @@ puts ""
 empty.make_histogram(false, true)
 puts empty
 puts ""
-# p histogram.sort
+
+puts "\n=== Was ist ein Prokoptôn ==="
+german = Textogram.new("    Was ist   ein Prokoptôn    ")
+german.make_histogram
+puts german
+puts ""
+german.make_histogram(false, false)
+puts german
+puts ""
+german.make_histogram(true, false)
+puts german
+puts ""
+german.make_histogram(false, true)
+puts german
+puts ""
