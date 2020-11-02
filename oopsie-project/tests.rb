@@ -1,22 +1,7 @@
-# Nobody’s perfect - not even supreme beings. Write the following tests:
- 
-
-# Superclass attribute is set correctly after initialization ✓
-# receive() works as expected ✓
-# give() works as expected ✓
-# The output of speak() ✓
-# 2 subclass methods
-# 2 module methods
-# A test that uses refute_equal ✓
-# A test that uses assert_output ✓
-# A test that uses refute_nil ✓
-# A test that uses assert_instance_of ✓
-
-
 require 'minitest/autorun'
 require_relative 'parent'
 require_relative 'children'
-require_relative 'modules'
+#require_relative 'modules'
 
 class CreatureTest < Minitest::Test
   @@creature = Creature.new("Billy", 21, "Go ahead, make my day!")
@@ -140,4 +125,15 @@ class CreatureTest < Minitest::Test
     assert_output(expected) { @@hero.fly }
   end
 
+  # module tests
+  def test_harvest_method
+    expected = "Let's get to harvesting!\n"
+    assert_output(expected) { @@hero.harvest }
+  end
+
+  def test_decimals_of_pi
+    expected = "3.14159"
+    actual = @@joker.decimals_of_pi(5)
+    assert_equal(expected, actual)
+  end
 end
