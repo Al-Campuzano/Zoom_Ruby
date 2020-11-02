@@ -16,6 +16,7 @@ class Textogram
   end
 
   def make_word_histogram
+    # split string into words, then downcase all except "I"
     text_arr = @text.split.map do |word| 
       if word != "I"
         word.downcase
@@ -23,9 +24,11 @@ class Textogram
         word
       end
     end
+    # split each word into array of characters, remove special characters, then rejoin
     clean_arr = text_arr.map do |word|
       word.split("").select { |c| c.downcase != c.upcase }.join("")
     end
+    # only select items from array that are not empty and tally
     @histogram = clean_arr.select { |word| word.length > 0 }.tally
   end
 
@@ -43,8 +46,8 @@ class Textogram
 end
 
 puts "Letter histogram".upcase
-puts "\n=== HELLO, world! ==="
-text = Textogram.new("HELLO, world!")
+puts "\n=== HELLO, world! 2 u 2 ==="
+text = Textogram.new("HELLO, world! 2 u 2")
 
 text.make_letter_histogram
 puts "case sensitive, with special characters"
@@ -97,6 +100,6 @@ puts "=== GERMAN ==="
 german.make_word_histogram
 puts german
 puts "=== HELLO hello A I world World ==="
-repeats = Textogram.new("HELLO hello A I world World")
+repeats = Textogram.new("HELLO hello A I world World 2 u 2")
 repeats.make_word_histogram
 puts repeats
