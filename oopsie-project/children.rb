@@ -10,6 +10,8 @@ require_relative 'modules'
 
 class Cartoon < Creature
   include GrowsSpices
+  include GoodAtMaths
+  
   attr_reader :animation_type
 
   def initialize(name="UNKNOWN", age=999, catch_phrase="I'm animated!", animation_type="Claymation")
@@ -42,6 +44,7 @@ end
 class SuperHero < Creature
   include AcceptsBribes
   include GrowsSpices
+  
   attr_reader :super_power
 
   def initialize(name="UNKNOWN", age=999, catch_phrase="HULK SMASH!", super_power="Flight")
@@ -77,6 +80,8 @@ end
 
 class Jester < Creature
   include AcceptsBribes
+  include GoodAtMaths
+
   attr_reader :joke
 
   def initialize(name="UNKNOWN", age=999, catch_phrase="Velcro: what a rip-off!", joke="Orion's Belt is a big waist of space")

@@ -21,9 +21,9 @@ module AcceptsBribes
 end
 
 module GrowsSpices
-  @time = Time.now
+  @@time = Time.now
   def harvest
-    if @time.month.between?(9,11)
+    if @@time.month.between?(9,11)
       puts "Let's get to harvesting!"
     else
       puts "The crops are not ready yet."
@@ -31,10 +31,24 @@ module GrowsSpices
   end
 
   def plant(spice="cumin")
-    if @time.month.between?(4,6)
+    if @@time.month.between?(4,6)
       puts "It's time to plant some #{spice}!"
     else
       puts "Now is not a good time to plant #{spice}."
     end
+  end
+end
+
+module GoodAtMaths
+  def decimals_of_pi(num=2)
+    "%.#{num}f" % Math::PI
+  end
+
+  def speed_of_light
+    puts "The speed of light is:"
+    puts "299,792,458 metres per second, or"
+    puts "1,080,000,000 kilometres per hour, or"
+    puts "186,000 miles per second, or"
+    puts "671,000,000 miles per hour."
   end
 end

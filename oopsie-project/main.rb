@@ -15,13 +15,16 @@ bob.jump
 p bob.items
 puts bob
 bob.move
+bob.plant("Mint")
+puts bob.decimals_of_pi(33)
 
 clark = SuperHero.new
 clark.name = "Clark Kent"
 p clark.items
 clark.fly
-clark.super_power = "Invinsibility"
+clark.super_power = "Super Strength"
 clark.move
+clark.harvest
 
 bill = Jester.new
 bill.name = "Bill Burr"
