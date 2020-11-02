@@ -26,7 +26,9 @@ class Textogram
     end
     # split each word into array of characters, remove special characters, then rejoin
     clean_arr = text_arr.map do |word|
-      word.split("").select { |c| c.downcase != c.upcase }.join("")
+      word.split("").select do |c| 
+        c.downcase != c.upcase 
+      end.join("")
     end
     # only select items from array that are not empty and tally
     @histogram = clean_arr.select { |word| word.length > 0 }.tally
@@ -39,7 +41,11 @@ class Textogram
   def to_s
     result = ""
     @histogram.sort.each do |c|
-      result += "#{c[0]}\t#{'*' * c[1]}\n"
+      if @histogram.size > 100
+        result += "#{c[0]}\t#{c[1]}\n"
+      else
+        result += "#{c[0]}\t#{'*' * c[1]}\n"
+      end
     end
     result
   end
@@ -92,14 +98,29 @@ german.make_letter_histogram(false, true)
 puts "case insensitive, with special characters"
 puts german
 
-puts "=== WORD HISTOGRAM ==="
+puts "\n=== WORD HISTOGRAM ==="
 
 text.make_word_histogram
 puts text
-puts "=== GERMAN ==="
+puts "\n=== GERMAN ==="
 german.make_word_histogram
 puts german
-puts "=== HELLO hello A I world World ==="
-repeats = Textogram.new("HELLO hello A I world World 2 u 2")
+puts "\n=== HELLO he'llo A I world World 2 u 2 ==="
+repeats = Textogram.new("HELLO he'llo A I world World 2 u 2")
 repeats.make_word_histogram
 puts repeats
+
+puts "Press enter to continue to reading file part:"
+gets
+
+puts "\n=== READING FILE ==="
+file_text = ""
+
+File.open("anthem.txt").each do |line|
+  file_text += line unless line == "\n"
+end
+
+from_file = Textogram.new(file_text) 
+from_file.make_word_histogram
+
+puts from_file
