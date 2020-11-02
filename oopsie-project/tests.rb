@@ -9,7 +9,7 @@
 # 2 module methods
 # A test that uses refute_equal ✓
 # A test that uses assert_output ✓
-# A test that uses refute_nil
+# A test that uses refute_nil ✓
 # A test that uses assert_instance_of ✓
 
 
@@ -122,4 +122,22 @@ class CreatureTest < Minitest::Test
     refute(@@creature.give_item("Hammers", 3))
     @@creature = Creature.new("Billy", 21, "Go ahead, make my day!")    
   end
+
+  # subclasses tests
+  @@joker = Jester.new
+  @@hero = SuperHero.new("Batman", 33, "I am the Dark Knight!", "Lots of money")
+  def test_jester_object_isnt_nil
+    refute_nil(@@joker)
+  end
+
+  def test_jester_move_method
+    expected = "I'm moving to Greenwich in a couple months. Don't know what I'm going to do in the mean time...\n"
+    assert_output(expected) { @@joker.move }
+  end
+
+  def test_superhero_fly_method_negative
+    expected = "Batman can't fly :(\n"
+    assert_output(expected) { @@hero.fly }
+  end
+
 end
