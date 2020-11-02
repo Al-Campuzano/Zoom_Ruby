@@ -28,8 +28,32 @@ class Textogram
   end
 end
 
+puts "\n=== HELLO, world! ==="
 text = Textogram.new("HELLO, world!")
 text.make_histogram(false,true)
 puts text
+text.make_histogram(true,false)
+puts ""
+puts text
+text.make_histogram
+puts ""
+puts text
+text.make_histogram(false,false)
+puts ""
+puts text
 
+puts "\n=== (empty) ==="
+empty = Textogram.new("     ")
+empty.make_histogram
+puts empty
+puts ""
+empty.make_histogram(false, false)
+puts empty
+puts ""
+empty.make_histogram(true, false)
+puts empty
+puts ""
+empty.make_histogram(false, true)
+puts empty
+puts ""
 # p histogram.sort
