@@ -19,3 +19,22 @@ module AcceptsBribes
     end
   end
 end
+
+module GrowsSpices
+  @time = Time.now
+  def harvest
+    if @time.month.between?(9,11)
+      puts "Let's get to harvesting!"
+    else
+      puts "The crops are not ready yet."
+    end 
+  end
+
+  def plant(spice="cumin")
+    if @time.month.between?(4,6)
+      puts "It's time to plant some #{spice}!"
+    else
+      puts "Now is not a good time to plant #{spice}."
+    end
+  end
+end
