@@ -1,7 +1,6 @@
 require 'minitest/autorun'
 require_relative 'parent'
 require_relative 'children'
-#require_relative 'modules'
 
 class CreatureTest < Minitest::Test
   @@creature = Creature.new("Billy", 21, "Go ahead, make my day!")
