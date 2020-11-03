@@ -5,6 +5,8 @@
 # Write Minitest tests to check that your class behaves correctly. Be sure to cover one case in each test, and to cover as many cases as possible.
 
 class StudentBody
+  include Enumerable
+
   def initialize
     @classes = { 
       grade1: ["Billy", "Susie", "Lara", "Oli", "Alex"],
@@ -17,8 +19,15 @@ class StudentBody
   def classes
     @classes
   end
+
+  def each
+    @classes.each_value do |students|
+      students.each { |student| yield student }
+    end
+  end
 end
 
 sb = StudentBody.new
 
-p sb.classes
+sb.each { |x| puts x }
+p sb.find_all { |x| x.include?("on")}
