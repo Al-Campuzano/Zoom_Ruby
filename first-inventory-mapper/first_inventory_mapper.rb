@@ -17,3 +17,18 @@
 # "eebeedebaceeceedeceacee" => {"Shelf" : 2, "Stool": 1, "Table": 2}
 # "zabc" => {"Shelf" : 1, "Stool" : 0, "Table" : 0}
 # "deeedeee" => {"Shelf" : 0, "Stool" : 0, "Table" : 1}
+
+class InventoryMapper
+  def initialize
+    @shelves = @stools = @tables = 0
+    @parts_map = { "a" => 1, "b" => 1, "c" => 3, "d" => 1, "e" => 4 }
+  end
+
+  def map(input)
+    input_map = input.tally
+    p input_map
+  end
+end
+
+mapper = InventoryMapper.new
+mapper.map("abccc")
