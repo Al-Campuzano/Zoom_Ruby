@@ -31,3 +31,8 @@ sb = StudentBody.new
 
 sb.each { |x| puts x }
 p sb.find_all { |x| x.include?("on")}
+p sb.count
+p sb.first
+p sb.sort
+p sb.sort.last
+p sb.reject { |x| x.downcase.include?("a") }
