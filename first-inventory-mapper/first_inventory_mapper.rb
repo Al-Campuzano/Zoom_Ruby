@@ -27,10 +27,10 @@ class InventoryMapper
     self.find_tables if @input_map["d"] && @input_map["e"]
     
     result = { "Shelf" => @shelves, "Stool" => @stools, "Table" => @tables }
-    print "\"#{input}\" => "
-    p result
+    self.print_result(input,result)
   end
   
+  private 
   def find_shelves
     while @input_map["a"] >= 1
       @input_map["a"] -= 1
@@ -53,6 +53,15 @@ class InventoryMapper
       @tables += 1
     end
   end
+
+  def print_result(input, result)
+    output = "\"#{input}\" => {"
+    result.each do |k,v| 
+      output += "\"#{k}\" : #{v}, "
+    end
+    output = output[0...-2] + "}"
+    puts output
+  end
 end
 
 # "abccc" => {"Shelf" : 1, "Stool": 1, "Table": 0}
@@ -66,6 +75,7 @@ mapper.map("abccc")
 mapper.map("beceadee")
 mapper.map("eebeedebaceeceedeceacee")
 mapper.map("zabc")
+mapper.map("zzzz!4")
 mapper.map("deeedeee")
 mapper.map("")
 mapper.map
