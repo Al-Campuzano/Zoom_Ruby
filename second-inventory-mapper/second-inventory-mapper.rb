@@ -12,18 +12,14 @@
 # Top: part ID = "d"
 # Legs: part ID = "e"
 
-# "abccc" => {"Shelf" : 1, "Stool": 1, "Table": 0}
-# "beceadee" => {"Shelf" : 1, "Stool": 0, "Table": 1}
-# "eebeedebaceeceedeceacee" => {"Shelf" : 2, "Stool": 1, "Table": 2}
-# "zabc" => {"Shelf" : 1, "Stool" : 0, "Table" : 0}
-# "deeedeee" => {"Shelf" : 0, "Stool" : 0, "Table" : 1}
+
 
 class Product
   attr_reader :total
   
   def initialize
     @total = 0
-    @parts = {"b" => 1, "c" => 3}
+    @parts = Hash.new(0)
   end
 
   def calculate_total(input)
@@ -61,6 +57,13 @@ class Table < Product
     @parts = { "d"=>1, "e"=>4 }
   end
 end
+
+
+# "abccc" => {"Shelf" : 1, "Stool": 1, "Table": 0}
+# "beceadee" => {"Shelf" : 1, "Stool": 0, "Table": 1}
+# "eebeedebaceeceedeceacee" => {"Shelf" : 2, "Stool": 1, "Table": 2}
+# "zabc" => {"Shelf" : 1, "Stool" : 0, "Table" : 0}
+# "deeedeee" => {"Shelf" : 0, "Stool" : 0, "Table" : 1}
 
 input = "abbbbccc".split("").tally
 prod = Product.new
