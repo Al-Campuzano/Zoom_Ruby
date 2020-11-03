@@ -25,8 +25,36 @@ class InventoryMapper
   end
 
   def map(input)
-    input_map = input.tally
-    p input_map
+    @input_map = input.split("").tally
+    self.find_shelves if @input_map.has_key?("a")
+    self.find_stools if @input_map["b"] && @input_map["c"]
+    self.find_tables if @input_map["d"] && @input_map["e"]
+
+    result = { "Shelf" => @shelves, "Stool" => @stools, "Table" => @tables }
+    p result
+  end
+
+  def find_shelves
+    while @input_map["a"] >= 1
+      @input_map["a"] -= 1
+      @shelves += 1
+    end
+  end
+
+  def find_stools
+    while @input_map["b"] >= 1 && @input_map["c"] >= 3
+      @input_map["b"] -= 1
+      @input_map["c"] -= 3
+      @stools += 1
+    end
+  end
+
+  def find_tables
+    while @input_map["d"] >= 1 && @input_map["e"] >= 4
+      @input_map["d"] -= 1
+      @input_map["e"] -= 4
+      @tables += 1
+    end
   end
 end
 
