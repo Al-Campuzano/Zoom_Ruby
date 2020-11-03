@@ -1,8 +1,3 @@
-# Write a TreasureMap class that stores a hash as per above. Add methods to add or remove food sources, water sources, or treasure to or from the map.
-
-# Add a to_s method to TreasureMap that displays all the characters of the map. You will need to iterate the hash to find the bounds of the map first such that you know the upper-, bottom-, left-, and right-most coordinates of the food/water/treasure. Then you can print out the values to the screen, checking the hash as you go to see what to print at each coordinate.
-
-
 class TreasureMap
   attr_reader :map_hash
   
@@ -31,26 +26,6 @@ class TreasureMap
     { min_width: min_width, max_width: max_width, min_height: min_height, max_height: max_height }
   end
 
-  def width
-    max = 0
-    min = 0
-    @map_hash.keys.each do |k|
-      max = k[0] > max ? k[0] : max
-      min = k[0] < min ? k[0] : min
-    end
-    @width = min.abs + 1 + max
-  end
-
-  def height
-    max = 0
-    min = 0
-    @map_hash.keys.each do |k|
-      max = k[1] > max ? k[1] : max
-      min = k[1] < min ? k[1] : min
-    end
-    @height = min.abs + 1 + max
-  end
-
   def to_s
     dimensions_hash = self.top_bottom_left_right
     result = ""
@@ -76,10 +51,20 @@ map.add_source([11,0], "F")
 map.add_source([6,-2], "W")
 map.add_source([-1,-5], "X")
 
+# these calls would result in exception errors
 # map.remove_source([0,1])
 # map.add_source([1,4], "Z")
 puts map.map_hash
-puts map.width
-puts map.height
-puts map.top_bottom_left_right
 puts map
+
+map2 = TreasureMap.new
+puts "EMPTY"
+puts map2
+
+puts "RANDOM"
+map2.add_source([rand(-10..10), rand(-10..10)], "F")
+map2.add_source([rand(-10..10), rand(-10..10)], "W")
+map2.add_source([rand(-10..10), rand(-10..10)], "W")
+map2.add_source([rand(-10..10), rand(-10..10)], "X")
+puts map2.map_hash
+puts map2
