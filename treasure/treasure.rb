@@ -39,12 +39,6 @@ class TreasureMap
   end
 end
 
-
-# F → (0,1)
-# F → (11,0)
-# W → (6,-2)
-# X → (-1,-5)
-
 map = TreasureMap.new
 map.add_source([0,1], "F")
 map.add_source([11,0], "F")
