@@ -1,27 +1,4 @@
-# Shelf:
-# Each unit is considered complete
-# Full unit: part ID = "a"
-
-# Stool:
-# For a stool to be complete, it requires 1 top and 3 legs
-# Top: part ID = "b"
-# Legs: part ID = "c"
-
-# Table:
-# For a table to be complete, it requires 1 top and 4 legs
-# Top: part ID = "d"
-# Legs: part ID = "e"
-
-
-
 class Product
-  attr_reader :total
-  
-  def initialize
-    @total = 0
-    @parts = Hash.new(0)
-  end
-
   def calculate_total(input)
     @total = 0
     @temp_hash = Hash.new(0)
@@ -31,7 +8,7 @@ class Product
       end
     end
     if @temp_hash.size == @parts.size
-      @total = @temp_hash.sort_by {|k,v| v}[0][1]
+      @total = @temp_hash.values.min
     end
     @total
   end
@@ -39,22 +16,44 @@ end
 
 class Shelf < Product
   def initialize
-    @total = 0
     @parts = { "a"=>1 }
   end
 end
 
 class Stool < Product
   def initialize
-    @total = 0
     @parts = { "b"=>1, "c"=>3 }
   end
 end
 
 class Table < Product
   def initialize
-    @total = 0
     @parts = { "d"=>1, "e"=>4 }
+  end
+end
+
+class InventoryMapper
+  
+  def map(input="")
+    products = [Shelf.new, Stool.new, Table.new]
+    input_map = input.split("").tally
+    results_map = Hash.new(0)
+
+    products.each do |p|
+      results_map[p.class.to_s] = p.calculate_total(input_map)
+    end
+
+    self.print_result(input, results_map)
+  end
+
+  private
+  def print_result(input, result)
+    output = "\"#{input}\" => {"
+    result.each do |k,v| 
+      output += "\"#{k}\" : #{v}, "
+    end
+    output = output[0...-2] + "}"
+    puts output
   end
 end
 
@@ -65,6 +64,12 @@ end
 # "zabc" => {"Shelf" : 1, "Stool" : 0, "Table" : 0}
 # "deeedeee" => {"Shelf" : 0, "Stool" : 0, "Table" : 1}
 
-input = "abbbbccc".split("").tally
-prod = Product.new
-print prod.calculate_total(input)
+mapper = InventoryMapper.new
+mapper.map("abccc")
+mapper.map("beceadee")
+mapper.map("eebeedebaceeceedeceacee")
+mapper.map("zabc")
+mapper.map("deeedeee")
+mapper.map("zzzz!4")
+mapper.map("")
+mapper.map

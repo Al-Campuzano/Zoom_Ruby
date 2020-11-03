@@ -1,18 +1,3 @@
-# Shelf:
-# Each unit is considered complete
-# Full unit: part ID = "a"
-
-# Stool:
-# For a stool to be complete, it requires 1 top and 3 legs
-# Top: part ID = "b"
-# Legs: part ID = "c"
-
-# Table:
-# For a table to be complete, it requires 1 top and 4 legs
-# Top: part ID = "d"
-# Legs: part ID = "e"
-
-
 class InventoryMapper
   def initialize
     @shelves = @stools = @tables = 0
@@ -75,8 +60,8 @@ mapper.map("abccc")
 mapper.map("beceadee")
 mapper.map("eebeedebaceeceedeceacee")
 mapper.map("zabc")
-mapper.map("zzzz!4")
 mapper.map("deeedeee")
+mapper.map("zzzz!4")
 mapper.map("")
 mapper.map
 
