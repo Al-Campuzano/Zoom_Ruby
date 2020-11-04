@@ -16,7 +16,7 @@ class StudentBodyTest < Minitest::Test
   end
 
   def test_default_is_same_as_long_list_in_setup
-    assert_equal(@long_list.first, @default_list.first)
+    assert_equal(@long_list.classes, @default_list.classes)
   end
 
   def test_dot_each_method
@@ -51,6 +51,30 @@ class StudentBodyTest < Minitest::Test
   def test_dot_sort_with_short
     expected = ["Claudio", "Mic"]
     actual = @short_list.sort
+    assert_equal(expected, actual)
+  end
+
+  def test_dot_map_with_short
+    expected = ["ciM", "oidualC"]
+    actual = @short_list.map { |x| x.reverse }
+    assert_equal(expected, actual)
+  end
+
+  def test_dot_find_all_with_long
+    expected = ["Alison", "Fiona", "Glyndon"]
+    actual = @long_list.find_all { |x| x.include?("on") }
+    assert_equal(expected, actual)
+  end
+
+  def test_dot_reject_with_short
+    expected = ["Claudio"]
+    actual = @short_list.reject { |x| x.downcase.include?("m") }
+    assert_equal(expected, actual)
+  end
+
+  def test_minmax_with_long
+    expected = ["Alex", "Susie"]
+    actual = @long_list.minmax 
     assert_equal(expected, actual)
   end
 end
