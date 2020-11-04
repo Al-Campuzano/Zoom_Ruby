@@ -10,7 +10,9 @@ class StudentBodyTest < Minitest::Test
       grade4: ["Jen", "Hiro", "Luna", "Glyndon", "Scarlet"]
     })
     @default_list = StudentBody.new # should be the same as long_list
-    @short_list = StudentBody.new({ grade8: ["Claudio", "Mic"] })
+    @short_list = StudentBody.new({ 
+      grade8: ["Mic", "Claudio"] 
+    })
   end
 
   def test_default_is_same_as_long_list_in_setup
@@ -18,13 +20,37 @@ class StudentBodyTest < Minitest::Test
   end
 
   def test_dot_each_method
-    expected = "Claudio\nMic\n"
+    expected = "Mic\nClaudio\n"
     assert_output(expected) { @short_list.each { |x| puts x } }    
   end
 
-  def test_dot_count
+  def test_dot_count_with_short
     expected = 2
     actual = @short_list.count
+    assert_equal(expected, actual)
+  end
+
+  def test_dot_count_with_long
+    expected = 20
+    actual = @long_list.count
+    assert_equal(expected, actual)
+  end
+
+  def test_dot_first_with_short
+    expected = "Mic"
+    actual = @short_list.first
+    assert_equal(expected, actual)
+  end
+
+  def test_dot_first_with_long
+    expected = "Billy"
+    actual = @long_list.first
+    assert_equal(expected, actual)
+  end
+
+  def test_dot_sort_with_short
+    expected = ["Claudio", "Mic"]
+    actual = @short_list.sort
     assert_equal(expected, actual)
   end
 end
