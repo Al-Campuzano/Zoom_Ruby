@@ -15,6 +15,10 @@ class StudentBody
       grade4: ["Jen", "Hiro", "Luna", "Glyndon", "Scarlet"]
     }
   end
+
+  def classes=(classes)
+    @classes = classes
+  end
   
   def classes
     @classes
@@ -36,3 +40,5 @@ p sb.first
 p sb.sort
 p sb.sort.last
 p sb.reject { |x| x.downcase.include?("a") }
+sb.classes = { grade8: ["Claudio", "Mic"] }
+p sb.map { |x| x.reverse }
