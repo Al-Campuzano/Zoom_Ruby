@@ -42,3 +42,4 @@ p sb.sort.last
 p sb.reject { |x| x.downcase.include?("a") }
 short = StudentBody.new({ grade8: ["Claudio", "Mic"] })
 p short.map { |x| x.reverse }
+short.each { |x| puts x }
