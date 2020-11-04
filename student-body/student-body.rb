@@ -7,8 +7,8 @@
 class StudentBody
   include Enumerable
 
-  def initialize
-    @classes = { 
+  def initialize(classes=nil)
+    @classes = classes || { 
       grade1: ["Billy", "Susie", "Lara", "Oli", "Alex"],
       grade2: ["Sarah", "Steven", "Alison", "Jose", "Roxy"],
       grade3: ["Kiko", "Fiona", "Garth", "Michelle", "Neal"],
@@ -40,5 +40,5 @@ p sb.first
 p sb.sort
 p sb.sort.last
 p sb.reject { |x| x.downcase.include?("a") }
-sb.classes = { grade8: ["Claudio", "Mic"] }
-p sb.map { |x| x.reverse }
+short = StudentBody.new({ grade8: ["Claudio", "Mic"] })
+p short.map { |x| x.reverse }
