@@ -1,9 +1,9 @@
 class Product
   attr_reader :parts
-  def calculate_total(input)
+  def calculate_total(parts_tally)
     totals = []
     parts.each do |id,value|
-      totals.push(input[id] ? input[id]/value : 0)
+      totals.push(parts_tally[id] ? parts_tally[id]/value : 0)
     end
     totals.min || 0
   end
@@ -55,32 +55,12 @@ class InventoryMapper
     result
   end
 
-  def print_result(input, result)
-    output = "\"#{input}\" => {"
-    result.each do |k,v| 
-      output += "\"#{k}\" : #{v}, "
+  def print_result(input_string, result_hash)
+    output = "\"#{input_string}\" => {"
+    result_hash.each do |product,value| 
+      output += "\"#{product}\" : #{value}, "
     end
     output = output[0...-2] + "}"
     puts output
   end
 end
-
-
-# "abccc" => {"Shelf" : 1, "Stool": 1, "Table": 0}
-# "beceadee" => {"Shelf" : 1, "Stool": 0, "Table": 1}
-# "eebeedebaceeceedeceacee" => {"Shelf" : 2, "Stool": 1, "Table": 2}
-# "zabc" => {"Shelf" : 1, "Stool" : 0, "Table" : 0}
-# "deeedeee" => {"Shelf" : 0, "Stool" : 0, "Table" : 1}
-
-# mapper = InventoryMapper.new
-# mapper.map("abccc")
-# mapper.map("beceadee")
-# mapper.map("eebeedebaceeceedeceacee")
-# mapper.map("zabc")
-# mapper.map("deeedeee")
-# mapper.map("?#@!4")
-# mapper.map("")
-# mapper.map
-
-# mapper = InventoryMapper.new([Shelf.new, Stool.new, Table.new, Chair.new])
-# mapper.map("abzzz")
