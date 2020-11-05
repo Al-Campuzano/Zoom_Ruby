@@ -10,3 +10,15 @@ class Fruit
     "I'm a juicy #{self.class}."
   end
 end
+
+class Apple < Fruit
+  def to_s
+    "I'm a tart #{self.class}."
+  end
+
+  def eat
+    puts "Mmm, green apples are my favorite!"
+  end
+end
+
+
