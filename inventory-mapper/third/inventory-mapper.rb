@@ -1,18 +1,19 @@
 class Product
+  attr_reader :parts
   def calculate_total(input)
     # TODO make these variables local, and use attr_reader for 'parts'
-    @total = 0
-    @temp_hash = Hash.new(0)
-    @parts.each do |k,v|
+    total = 0
+    temp_hash = Hash.new(0)
+    parts.each do |k,v|
       # TODO see about getting rid of this if to allow for zero values
       if input[k] && (input[k] / v) >= 1
-        @temp_hash[k] = input[k] / v
+        temp_hash[k] = input[k] / v
       end
     end
-    if @temp_hash.size == @parts.size
-      @total = @temp_hash.values.min
+    if temp_hash.size == parts.size
+      total = temp_hash.values.min
     end
-    @total
+    total
   end
 end
 
