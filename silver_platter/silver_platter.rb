@@ -21,4 +21,12 @@ class Apple < Fruit
   end
 end
 
+class Banana < Fruit
+  def to_s
+    "I'm a ripe #{self.class}."
+  end
 
+  def eat
+    puts "You gotta peel me first!"
+  end
+end
