@@ -36,7 +36,11 @@ class Table < Product
 end
 
 class InventoryMapper
-  # TODO pass in the list of products into initialize method
+  attr_reader :products
+
+  def initialize(product_list=[Shelf.new, Stool.new, Table.new])
+    @products = product_list
+  end
   
   def map(input="")
     products = [Shelf.new, Stool.new, Table.new]
@@ -60,20 +64,3 @@ class InventoryMapper
     puts output
   end
 end
-
-
-# "abccc" => {"Shelf" : 1, "Stool": 1, "Table": 0}
-# "beceadee" => {"Shelf" : 1, "Stool": 0, "Table": 1}
-# "eebeedebaceeceedeceacee" => {"Shelf" : 2, "Stool": 1, "Table": 2}
-# "zabc" => {"Shelf" : 1, "Stool" : 0, "Table" : 0}
-# "deeedeee" => {"Shelf" : 0, "Stool" : 0, "Table" : 1}
-
-# mapper = InventoryMapper.new
-# mapper.map("abccc")
-# mapper.map("beceadee")
-# mapper.map("eebeedebaceeceedeceacee")
-# mapper.map("zabc")
-# mapper.map("deeedeee")
-# mapper.map("?#@!4")
-# mapper.map("")
-# mapper.map
