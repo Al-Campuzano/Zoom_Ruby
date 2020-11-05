@@ -18,6 +18,7 @@ alex.perform
 alex.instruments
 alex.remove_instrument("Mandolin")
 alex.instruments
+alex.is_approachable
 puts alex
 
 
@@ -36,8 +37,10 @@ al.instruments { |y| puts y.include?("Guitar") }
 
 
 geddy = Bassist.new("Geddy Lee", 42, true)
+geddy.work
 puts geddy
 
 neil = Drummer.new("Neil Peart", 35)
 neil.traditional_grip(nil)
+neil.add_skill("Writer")
 puts neil

@@ -1,11 +1,9 @@
-# Exist in their own .rb file
-# Have at least 1 additional attribute
-# Have at least 1 additional method.
-# Overwrite at least 1 parent method.
-
 require_relative 'musician'
+require_relative 'mixins'
 
 class Bassist < Musician
+  include HardWorker
+  
   def initialize (name = "Anonymous", years_experience = 0, active = false, fave_amp = "Ampeg")
     super(name, years_experience, active)
     @fave_amp = fave_amp
