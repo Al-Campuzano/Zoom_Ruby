@@ -1,8 +1,10 @@
 class Product
   def calculate_total(input)
+    # TODO make these variables local, and use attr_reader for 'parts'
     @total = 0
     @temp_hash = Hash.new(0)
     @parts.each do |k,v|
+      # TODO see about getting rid of this if to allow for zero values
       if input[k] && (input[k] / v) >= 1
         @temp_hash[k] = input[k] / v
       end
@@ -33,6 +35,7 @@ class Table < Product
 end
 
 class InventoryMapper
+  # TODO pass in the list of products into initialize method
   
   def map(input="")
     products = [Shelf.new, Stool.new, Table.new]
