@@ -75,5 +75,5 @@ mapper.map("eebeedebaceeceedeceacee")
 mapper.map("zabc")
 mapper.map("deeedeee")
 mapper.map("zzzz!4")
-mapper.map("")
-mapper.map
+# mapper.map("")
+# mapper.map
