@@ -2,8 +2,8 @@ class Product
   attr_reader :parts
   def calculate_total(input)
     totals = []
-    parts.each do |k,v|
-      input[k] ? totals.push(input[k]/v) : 0
+    parts.each do |id,value|
+      totals.push(input[id] ? input[id]/value : 0)
     end
     totals.min || 0
   end
@@ -24,6 +24,12 @@ end
 class Table < Product
   def initialize
     @parts = { "d"=>1, "e"=>4 }
+  end
+end
+
+class Chair < Product
+  def initialize
+    @parts = { "z"=>2 }
   end
 end
 
@@ -75,3 +81,6 @@ end
 # mapper.map("?#@!4")
 # mapper.map("")
 # mapper.map
+
+# mapper = InventoryMapper.new([Shelf.new, Stool.new, Table.new, Chair.new])
+# mapper.map("abzzz")
