@@ -5,3 +5,8 @@
 # Cheese, which implements a custom to_s method as well as an eat method
 # Sausage, which implements a custom to_s method as well as an eat method
 
+class Fruit
+  def to_s
+    "I'm a juicy #{self.class}."
+  end
+end
