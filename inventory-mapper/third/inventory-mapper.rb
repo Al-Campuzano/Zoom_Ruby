@@ -68,12 +68,12 @@ end
 # "zabc" => {"Shelf" : 1, "Stool" : 0, "Table" : 0}
 # "deeedeee" => {"Shelf" : 0, "Stool" : 0, "Table" : 1}
 
-mapper = InventoryMapper.new
-mapper.map("abccc")
-mapper.map("beceadee")
-mapper.map("eebeedebaceeceedeceacee")
-mapper.map("zabc")
-mapper.map("deeedeee")
+# mapper = InventoryMapper.new
+# mapper.map("abccc")
+# mapper.map("beceadee")
+# mapper.map("eebeedebaceeceedeceacee")
+# mapper.map("zabc")
+# mapper.map("deeedeee")
 # mapper.map("?#@!4")
 # mapper.map("")
 # mapper.map
