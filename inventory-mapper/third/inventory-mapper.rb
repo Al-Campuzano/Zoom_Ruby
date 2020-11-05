@@ -1,19 +1,11 @@
 class Product
   attr_reader :parts
   def calculate_total(input)
-    # TODO make these variables local, and use attr_reader for 'parts'
-    total = 0
-    temp_hash = Hash.new(0)
+    totals = []
     parts.each do |k,v|
-      # TODO see about getting rid of this if to allow for zero values
-      if input[k] && (input[k] / v) >= 1
-        temp_hash[k] = input[k] / v
-      end
+      input[k] ? totals.push(input[k]/v) : 0
     end
-    if temp_hash.size == parts.size
-      total = temp_hash.values.min
-    end
-    total
+    totals.min || 0
   end
 end
 
@@ -43,18 +35,20 @@ class InventoryMapper
   end
   
   def map(input="")
-    products = [Shelf.new, Stool.new, Table.new]
     input_map = input.split("").tally
-    results_map = Hash.new(0)
-
+    results_map = build_results(input_map)
+    print_result(input, results_map)
+  end
+  
+  private
+  def build_results(parts_tally)
+    result = Hash.new(0)
     products.each do |p|
-      results_map[p.class.to_s] = p.calculate_total(input_map)
+      result[p.class.to_s] = p.calculate_total(parts_tally)
     end
-
-    self.print_result(input, results_map)
+    result
   end
 
-  private
   def print_result(input, result)
     output = "\"#{input}\" => {"
     result.each do |k,v| 
@@ -64,3 +58,20 @@ class InventoryMapper
     puts output
   end
 end
+
+
+# "abccc" => {"Shelf" : 1, "Stool": 1, "Table": 0}
+# "beceadee" => {"Shelf" : 1, "Stool": 0, "Table": 1}
+# "eebeedebaceeceedeceacee" => {"Shelf" : 2, "Stool": 1, "Table": 2}
+# "zabc" => {"Shelf" : 1, "Stool" : 0, "Table" : 0}
+# "deeedeee" => {"Shelf" : 0, "Stool" : 0, "Table" : 1}
+
+# mapper = InventoryMapper.new
+# mapper.map("abccc")
+# mapper.map("beceadee")
+# mapper.map("eebeedebaceeceedeceacee")
+# mapper.map("zabc")
+# mapper.map("deeedeee")
+# mapper.map("?#@!4")
+# mapper.map("")
+# mapper.map
