@@ -17,7 +17,7 @@ class Apple < Fruit
   end
 
   def eat
-    puts "Mmm, green apples are my favorite!"
+    puts "Green apples are my favorite!"
   end
 end
 
@@ -28,5 +28,15 @@ class Banana < Fruit
 
   def eat
     puts "You gotta peel me first!"
+  end
+end
+
+class Cheese
+  def to_s
+    "I'm a creamy #{self.class}."
+  end
+
+  def eat
+    puts "Mmm so Gouda!"
   end
 end
