@@ -30,6 +30,16 @@ class Peach
   end
 
   def apply_discounts(quantity)
-    @price_cents
+    @price_cents * quantity
   end
 end
+
+
+peach = Peach.new
+puts peach.apply_discounts(2)
+
+apple = Apple.new
+puts apple.apply_discounts(10)
+
+grape = Grape.new
+puts grape.apply_discounts(4)
