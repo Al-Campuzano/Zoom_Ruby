@@ -20,11 +20,7 @@ class Apples < Fruit
   @price_cents = 300
   
   def self.apply_discounts(quantity)
-    if quantity >= 2
-      @price_cents * quantity * 0.8
-    else
-      @price_cents * quantity
-    end
+    quantity >= 2 ? super * 0.8 : super
   end
 end
 
