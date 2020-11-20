@@ -1,6 +1,14 @@
 # discounts-system.rb
 
-module Grapes
+class Fruit
+  @price_cents = 100
+
+  def self.apply_discounts(quantity)
+    @price_cents * quantity
+  end
+end
+
+class Grapes < Fruit
   @price_cents = 500
   
   def self.apply_discounts(quantity)
@@ -8,7 +16,7 @@ module Grapes
   end
 end
 
-module Apples
+class Apples < Fruit
   @price_cents = 300
   
   def self.apply_discounts(quantity)
@@ -20,12 +28,8 @@ module Apples
   end
 end
 
-module Peaches
+class Peaches < Fruit
   @price_cents = 700
-
-  def self.apply_discounts(quantity)
-    @price_cents * quantity
-  end
 end
 
 def calculate_total_price(cart)
