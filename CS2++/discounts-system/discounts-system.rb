@@ -15,7 +15,7 @@ module Apples
     if quantity >= 2
       @price_cents * quantity * 0.8
     else
-      @price_cents
+      @price_cents * quantity
     end
   end
 end
@@ -28,18 +28,16 @@ module Peaches
   end
 end
 
+def calculate_total_price(cart)
+  total = 0
+  cart.each do |item|
+    total += Kernel.const_get(item[0].capitalize).apply_discounts(item[1])
+  end
+  total/100
+end
 
-# peach = Peach.new
-puts Peaches.apply_discounts(2)
-
-# apple = Apple.new
-puts Apples.apply_discounts(10)
-
-# grape = Grape.new
-puts Grapes.apply_discounts(4)
-
-# puts Kernel.const_get("peach".capitalize)
-# puts Object.const_set("Grape", Class.new).apply_discounts(2)
-
-# puts Testing.apply_discounts(2)
-# puts Kernel.const_get("testing".capitalize).apply_discounts(2)
+puts calculate_total_price([ ['grapes', 1], ['apples', 0], ['peaches', 1] ]) # 12
+puts calculate_total_price([ ['grapes', 1], ['apples', 1], ['peaches', 1] ]) # 15
+puts calculate_total_price([ ['grapes', 2], ['apples', 2], ['peaches', 1] ]) # 16.8
+puts calculate_total_price([ ['grapes', 3], ['apples', 5], ['peaches', 2] ]) # 36
+puts calculate_total_price([ ['peaches', 7], ['grapes', 7], ['apples', 7] ]) # 85.8
