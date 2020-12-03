@@ -34,10 +34,17 @@ loop do
 
   results = nil
   # AND implementation
+  # user_input.split.each do |user_word|
+  #   temp_results = word_map[user_word] || []
+  #   results ||= temp_results
+  #   results = results & temp_results
+  # end
+
+  # OR implementation
   user_input.split.each do |user_word|
     temp_results = word_map[user_word] || []
     results ||= temp_results
-    results = results & temp_results
+    results = results|temp_results
   end
   
   if results.size > 0
