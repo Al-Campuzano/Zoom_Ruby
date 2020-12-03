@@ -32,18 +32,12 @@ loop do
     break
   end
 
-  
-  if user_input.split.size > 1
-    results = nil
-    user_input.split.each do |user_word|
-      temp_results = word_map[user_word] || []
-      results ||= temp_results
-      results = results & temp_results
-    end
-  else
-    results = word_map[user_input] || []
+  results = nil
+  user_input.split.each do |user_word|
+    temp_results = word_map[user_word] || []
+    results ||= temp_results
+    results = results & temp_results
   end
-  
   
   if results.size > 0
     puts "Found #{results.size} results: "
