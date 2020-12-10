@@ -1,8 +1,10 @@
 // better version after the first 70 minutes elapsed 
 // URL shortener interview question
 
-const TEST_URL = "https://mlb.com";
-let short_urls_hash = {};
+query_string = location.search.slice(1);
+if (query_string in localStorage) {
+  window.location.replace(localStorage[query_string]);
+}
 
 // generate new 6-digit code
 function generateRandomLetter() {
@@ -16,29 +18,37 @@ function displayNewURL(code) {
   let response_el = document.getElementById("Response");
 
   let para = document.createElement("a");
-  let node = document.createTextNode("Your new shorter URL is: " + newURL);
+  let node = document.createTextNode(newURL);
   para.href = newURL;
 
   para.appendChild(node);
   response_el.innerHTML = "";
+  response_el.parentElement.style.display = "block";
   response_el.appendChild(para);
 }
 
-function addURLToHash(url) {
+function createRandomCode(pairs = 3) {
   let code = "";
 
-  for (let x = 0; x < 3; x++) {
+  for (let x = 0; x < pairs; x++) {
     code += generateRandomLetter();
     code += String(Math.floor(Math.random()*10));
   }
 
-  if (!(code in short_urls_hash)){
-    short_urls_hash[code] = url;
+  return code;
+}
+
+function addURLToHash(url) {
+  code = createRandomCode();  
+
+  if (!(code in localStorage)){
+    localStorage[code] = url;
   } else { // code is already in hash
+    console.log("Code already there");
     addURLToHash(url);
   }
   displayNewURL(code)
-  console.log(short_urls_hash);
+  console.log(localStorage);
 }
 
 function addURLToHashWrapper() {
@@ -47,10 +57,4 @@ function addURLToHashWrapper() {
 
 // Get the info from webpage
 let submit_button = document.getElementById("Submit");
-
 submit_button.addEventListener("click", addURLToHashWrapper);
-
-addURLToHash(TEST_URL)
-addURLToHash(TEST_URL)
-
-query_string = location.search.slice(1);
