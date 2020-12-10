@@ -1,5 +1,5 @@
+// better version after the first 70 minutes elapsed 
 // URL shortener interview question
-// solution after 70 minutes
 
 const TEST_URL = "https://mlb.com";
 let short_urls_hash = {};
@@ -53,3 +53,4 @@ submit_button.addEventListener("click", addURLToHashWrapper);
 addURLToHash(TEST_URL)
 addURLToHash(TEST_URL)
 
+query_string = location.search.slice(1);
