@@ -10,6 +10,19 @@ function generateRandomLetter() {
   return alphabet[Math.floor(Math.random() * alphabet.length)];
 }
 
+function displayNewURL(code) {
+  let newURL = location.origin + location.pathname + "?" + code;
+  let response_el = document.getElementById("Response");
+
+  let para = document.createElement("a");
+  let node = document.createTextNode("Your new shorter URL is: " + newURL);
+  para.href = newURL;
+
+  para.appendChild(node);
+  response_el.innerHTML = "";
+  response_el.appendChild(para);
+}
+
 function addURLToHash(url) {
   let code = "";
 
@@ -20,19 +33,21 @@ function addURLToHash(url) {
 
   if (!(code in short_urls_hash)){
     short_urls_hash[code] = url;
-  } else {
-    console.log("code is already there");
-    //addURLToHash(url);
+  } else { // code is already in hash
+    addURLToHash(url);
   }
+  displayNewURL(code)
   console.log(short_urls_hash);
+}
+
+function addURLToHashWrapper() {
+  addURLToHash(document.getElementById("OG-URL").value)
 }
 
 // Get the info from webpage
 let submit_button = document.getElementById("Submit");
-let text_input = document.getElementById("OG-URL")
 
-//submit_button.onclick = addURLToHash(text_input.value);
-submit_button.addEventListener("click", addURLToHash(text_input.value));
+submit_button.addEventListener("click", addURLToHashWrapper);
 
 addURLToHash(TEST_URL)
 addURLToHash(TEST_URL)
