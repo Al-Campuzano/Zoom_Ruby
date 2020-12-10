@@ -2,9 +2,14 @@
 // URL shortener interview question
 
 query_string = location.search.slice(1);
-if (query_string in localStorage) {
-  window.location.replace(localStorage[query_string]);
-}
+
+if (query_string.length > 0) {
+  if (query_string in localStorage) {
+    window.location.replace(localStorage[query_string]);
+  } else {
+    window.location.replace("/404.html");
+  }
+} 
 
 // generate new 6-digit code
 function generateRandomLetter() {
