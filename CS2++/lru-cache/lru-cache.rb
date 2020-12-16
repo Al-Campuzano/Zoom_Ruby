@@ -14,6 +14,10 @@
 
 class Record
   attr_reader :data, :last_used
+
+  def initialize(val)
+    @data = val
+  end
 end
 
 class Cache
@@ -27,11 +31,18 @@ class Cache
   def to_h
     puts data
   end
+
+  def write(key, val)
+    record = Record.new(val)
+    data[key] = record.data
+  end
 end
 
 
 
 ###
 cache = Cache.new(max_size: 3)
+cache.to_h
 
+cache.write("key1", "val1")
 cache.to_h
